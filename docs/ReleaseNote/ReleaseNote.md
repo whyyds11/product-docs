@@ -1,6 +1,4 @@
 # 更新日志
-## [v0.25.0.3](https://docs.ark.online/ReleaseNote/v0.25.0.3.html)
-
 ## [v0.25.0.2](https://docs.ark.online/ReleaseNote/v0.25.0.2.html)
 
 ## [v0.25.0.1](https://docs.ark.online/ReleaseNote/v0.25.0.1.html)
