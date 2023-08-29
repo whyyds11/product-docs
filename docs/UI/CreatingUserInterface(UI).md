@@ -129,7 +129,7 @@ export default class UIDefault extends UI.UIBehavior {
     protected onStart() {
         //通过路径找到按钮和容器
         const canvas_1=this.uiWidgetBase.findChildByPath('RootCanvas') as UI.Canvas
-        const btn = (base.findChildByPath("RootCanvas/Button")) as UI.Button; 
+        const btn = this.uiWidgetBase.findChildByPath("RootCanvas/Button") as UI.Button; 
         //点击此按钮后打开某个自定义UI
         btn.onPressed.add(() => {
             let uiprefab1= UI.createUIByName('/NewUI_1.ui') as UI.UserWidget
