@@ -287,7 +287,7 @@ export default defineConfigWithTheme<DefaultTheme.Config>({
             text: '主版本',
             link: 'https://docs.ark.online/',
             path: true
-          }
+          }          
         ]
       }
     ],
