@@ -284,8 +284,8 @@ export default defineConfigWithTheme<DefaultTheme.Config>({
         text: '024 版本',
         items: [
           {
-            text: '025 META',
-            link: 'https://docs-025.ark.online/',
+            text: '主版本',
+            link: 'https://docs.ark.online/',
             path: true
           }
         ]
