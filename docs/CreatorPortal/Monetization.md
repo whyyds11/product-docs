@@ -6,13 +6,21 @@
 
 ::: 
 
+在【数据】-【[商业化数据](https://portal.ark.online/#/admin/commerce-data)】可以看到您所有游戏的商业化数据，在【财务与管理】-【结算管理】可以对您的游戏收入进行提现。
+
+![CleanShot 2023-09-25 at 16.31.03@2x](https://arkimg.ark.online/CleanShot%202023-09-25%20at%2016.31.03@2x.webp)
+
 ## 预估收益
+
+在【总览】可以看到您当前游戏的预估收益，目前收益主要分为**活动激励**和**广告收益**，点击【预估收益】即可进入商业化数据看板。
+
+![CleanShot 2023-09-25 at 16.27.43@2x](https://arkimg.ark.online/CleanShot%202023-09-25%20at%2016.27.43@2x.webp)
 
 ### 活动激励
 
-可在【游戏数据】-【[基础数据](https://portal.ark.online/#/admin/game-data)】查看参与活动游戏每天的预估激励奖金。
+当您的游戏参与创作者激励活动时，可在【游戏数据】-【商业化数据】查看参与活动游戏每天的预估激励奖金。
 
-![img](https://arkimg.ark.online/1684028366838-226.webp)
+![CleanShot 2023-09-25 at 16.15.27@2x](https://arkimg.ark.online/CleanShot%202023-09-25%20at%2016.15.27@2x.webp)
 
 ::: warning 创作者活动激励每月于什么时候提现可到账？
 
@@ -24,9 +32,9 @@
 
 ### 广告收益
 
-可在【游戏数据】-【[广告数据](https://portal.ark.online/#/admin/advertising-data)】查看广告接入游戏的每日预估收益。
+广告收益是您的游戏接入广告后的收益，可在【游戏数据】-【商业化数据】查看广告接入游戏的每日预估收益。
 
-![img](https://arkimg.ark.online/1684028366838-227.webp)
+![CleanShot 2023-09-25 at 16.20.13@2x](https://arkimg.ark.online/CleanShot%202023-09-25%20at%2016.20.13@2x.webp)
 
 ::: warning 账单明细缺少部分天数广告收益
 
@@ -40,17 +48,19 @@
 
 结算管理支持创作者查看每一周期的激励奖金及广告收益，并可在结算页面进行提现至个人银行卡。
 
+![CleanShot 2023-09-25 at 16.24.54@2x](https://arkimg.ark.online/CleanShot%202023-09-25%20at%2016.24.54@2x.webp)
+
 ### **绑定银行卡**
 
 前往创作者中心右上角-【[个人中心](https://portal.ark.online/#/admin/person-center)】-【绑定银行卡信息】。
 
-![img](https://arkimg.ark.online/1684028366838-228.webp)
+![CleanShot 2023-09-25 at 16.22.43@2x](https://arkimg.ark.online/CleanShot%202023-09-25%20at%2016.22.43@2x.webp)
 
 ### **发起提现**
 
 进入【[结算管理](https://portal.ark.online/#/admin/settle-list)】，在达到提现门槛（500元）的创作者可在结算管理页面发起提现，点击提现页面后会验证短信验证码，输入验证码完成后即可成功发起提现！
 
-![img](https://arkimg.ark.online/1684028366839-229.webp)
+![CleanShot 2023-09-25 at 16.23.11@2x](https://arkimg.ark.online/CleanShot%202023-09-25%20at%2016.23.11@2x.webp)
 
 ::: warning 提现时提示“没有权限3001”？
 
@@ -60,6 +70,6 @@
 
 ### **查看明细**
 
-点击导出明细后，可在报表下载内下载文件，即可查看上个月广告分成明细和活动激励明细。
+点击导出明细后，可在报表下载内下载文件，即可查看每一笔广告分成明细和活动激励明细。
 
-![img](https://arkimg.ark.online/1684028366839-230.webp)
+![CleanShot 2023-09-25 at 16.26.08@2x](https://arkimg.ark.online/CleanShot%202023-09-25%20at%2016.26.08@2x.webp)

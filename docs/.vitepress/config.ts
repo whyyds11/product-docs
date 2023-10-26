@@ -252,6 +252,9 @@ export default defineConfigWithTheme<DefaultTheme.Config>({
         collapsible: true,
         collapsed: true,
         items: [
+          { text: 'v0.27.0.0', link: '/ReleaseNote/v0.27.0.0.md' },
+          { text: 'v0.26.0.5', link: '/ReleaseNote/v0.26.0.5.md' },
+          { text: 'v0.26.0.4', link: '/ReleaseNote/v0.26.0.4.md' },
           { text: 'v0.26.0.2', link: '/ReleaseNote/v0.26.0.2.md' },
           { text: 'v0.26.0.1', link: '/ReleaseNote/v0.26.0.1.md' },
           { text: 'v0.26.0.0', link: '/ReleaseNote/v0.26.0.0.md' },
@@ -301,8 +304,12 @@ export default defineConfigWithTheme<DefaultTheme.Config>({
     siteTitle: '产品手册',
     nav: [
       {
-        text: '创作者',
+        text: '官网',
         link: 'https://creator.ark.online/'
+      },
+      {
+        text: '论坛',
+        link: 'https://forum.ark.online/'
       },
       {
         text: '教程',
@@ -313,8 +320,8 @@ export default defineConfigWithTheme<DefaultTheme.Config>({
         link: 'https://api-docs.ark.online/'
       },
       {
-        text: '论坛',
-        link: 'https://forum.ark.online/'
+        text: '创作者',
+        link: 'https://portal.ark.online/'
       },
       {
         text: '026 版本',
@@ -323,7 +330,7 @@ export default defineConfigWithTheme<DefaultTheme.Config>({
             text: '主版本',
             link: 'https://docs.ark.online/',
             path: true
-          }          
+          }
         ]
       }
     ],
@@ -342,7 +349,7 @@ export default defineConfigWithTheme<DefaultTheme.Config>({
         }
       }
     ],
-    outline: [2, 3],
+    outline: [2, 4],
     editLink: {
       pattern:
         'https://github.com/prodigytech-doc/product-docs/tree/main/docs/:path',

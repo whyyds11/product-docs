@@ -2,36 +2,34 @@
 
 ::: tip 阅读本文大概需要10分钟
 
-本文将帮助您快速了解游戏发布、更新、测试及审核流程。
+本文将帮助您快速了解创作者中心及游戏发布、更新、测试及审核流程。
 
 :::
+
+[创作者中心](https://portal.ark.online/#/admin/game-list)将帮助您一站式管理发布的游戏及资源，您可以在此查看游戏相关数据、接入游戏相关服务、管理账号以及进行财务结算。
+
+![CleanShot 2023-09-24 at 10.29.52@2x](https://arkimg.ark.online/CleanShot%202023-09-24%20at%2010.29.52@2x.webp)
 
 ## 游戏发布
 
 ### 发布游戏工程
 
-打开编辑器菜单栏的【工程】菜单，并找到工程菜单中的【发布游戏】。
+打开编辑器菜单栏的【工程】菜单，并找到工程菜单中的【发布游戏】，在弹出的游戏发布窗口中，填写游戏相关信息，完成后点击发布。
 
-![img](https://arkimg.ark.online/1684027758538-10.webp)
-
-在弹出的游戏发布窗口中，填写游戏相关信息，完成后点击发布。
-
-![img](https://arkimg.ark.online/1684027758537-1.webp)
+![CleanShot 2023-09-25 at 16.36.13@2x](https://arkimg.ark.online/CleanShot%202023-09-25%20at%2016.36.13@2x.webp)
 
 - **游戏名称**：必填项，作为发布在 233 乐园的游戏名称；
 - **发布说明**：必填项，不会呈现给用户，仅供审核人员和创作者查看，可在版本列表查看；
-- **游戏截图**：游戏工程保存时的视口截图，方便区分不同游戏工程文件；
+- **游戏截图**：游戏工程保存时的视口截图，方便区分不同游戏工程文件，会在工程目录展示；
 - **单机模式**：勾选后，游戏为单人模式，且发布后无法修改；
-- **接入MGS**：勾选后游戏将接入[社交功能](https://docs.ark.online/Editor/UseMGS.html)，玩家可在游戏中聊天交流和邀请好友；
 
 ### 游戏信息填写
 
 游戏上传后会跳转至[创作者中心](https://portal.ark.online/#/admin/game-list)，需要继续填写游戏详细信息，详见[游戏曝光运营](https://docs.ark.online/CreatorPortal/Promotion&Operation.html)。
 
-![img](https://arkimg.ark.online/1684027758537-2.webp)
+![CleanShot 2023-09-25 at 16.40.35@2x](https://arkimg.ark.online/CleanShot%202023-09-25%20at%2016.40.35@2x.webp)
 
 - **游戏名称**：作为 233 乐园的游戏名称，可在[创作者中心](https://portal.ark.online/#/admin/game-list)进行二次编辑；
-- **关键词**：创作者可自行定义的游戏关键词，用以用户搜索；
 - **游戏图标**：展示在 233 乐园上的游戏图标；
 - **首页图**：展示在 233 乐园首页的游戏大图（**主要曝光入口**）；
 - **游戏分类&标签**：设置游戏对应的分类和标签，提高游戏曝光；
@@ -40,7 +38,7 @@
 
 添加详情页素材（视频、五图、描述），可以同时多套素材在线，方便查看不同详情页转化。
 
-![img](https://arkimg.ark.online/1684027758537-3.webp)
+![CleanShot 2023-09-25 at 16.41.55@2x](https://arkimg.ark.online/CleanShot%202023-09-25%20at%2016.41.55@2x.webp)
 
 - **素材名称**：为本套素材命名，用于区分多套素材，如：二次元风格；
 - **游戏图片**：展示在详情页上，一般可上传4-5张图片，一般为游戏内截图介绍玩法等；
@@ -51,11 +49,11 @@
 
 打开编辑器菜单栏的【工程】-【更新已发布游戏】，选择线上对应游戏点击更新。
 
-![img](https://arkimg.ark.online/1684027758537-4.webp)
+![CleanShot 2023-09-25 at 16.43.18@2x](https://arkimg.ark.online/CleanShot%202023-09-25%20at%2016.43.18@2x.webp)
 
 跳转到创作者中心后，可继续修改游戏详细信息并提交审核，每次更新会自增一个游戏版本，可对游戏版本进行AB测试或手动上线（审核通过不会立即上线），详见[游戏版本管理](https://docs.ark.online/CreatorPortal/VersionManagement.html)。
 
-![img](https://arkimg.ark.online/1684027758537-5.webp)
+![CleanShot 2023-09-25 at 16.45.30@2x](https://arkimg.ark.online/CleanShot%202023-09-25%20at%2016.45.30@2x.webp)
 
 ## 游戏测试
 
@@ -67,30 +65,22 @@
 
 ### 获取游戏二维码
 
-**方法一**：游戏信息填写页面，点击提交审核后会出现温馨提示，温馨提示弹窗右下角点击我要自测即可获取二维码。
+**方法一**：游戏列表页点击【游戏测试】即可生成当前游戏的测试二维码。
 
-![img](https://arkimg.ark.online/1684027758537-6.webp)
+<video controls src="https://cdn.233xyx.com/online/CjoQe1e5aXR91695525099139.mp4"></video>
 
-**方法二**：在[我的游戏](https://portal.ark.online/#/admin/game-list)，打开需要测试游戏的二维码。
+**方法二**：在对应游戏列表，点击【总览】-【游戏测试】打开需要测试游戏的二维码。
 
-![img](https://arkimg.ark.online/1684027758537-7.webp)
+![CleanShot 2023-09-25 at 16.46.35@2x](https://arkimg.ark.online/CleanShot%202023-09-25%20at%2016.46.35@2x.webp)
 
 ### 使用游戏二维码
 
 打开233乐园扫一扫（可通过[233官网](https://www.233leyuan.com/)下载），找到需要测试的版本，点击【开始】拉起游戏。
 
-![img](https://arkimg.ark.online/1684027758538-8.gif)
+![CleanShot 2023-09-24 at 13.38.45@2x](https://arkimg.ark.online/CleanShot%202023-09-24%20at%2013.38.45@2x.webp)
 
 ## 游戏审核
 
 审核人员将对您提交的游戏内容及游戏素材进行审核，游戏文本中出现**涉政、涉黄**等敏感词汇一经检测出来，会被判定审核不通过，多次出现可能会对创作者在233乐园平台的信誉造成影响。
 
 > 游戏提审后，请关注创作者中心[我的游戏](https://portal.ark.online/#/admin/game-list)列表的审核状态，若不通过审核，创作者可查看拒绝原因并在处理后再次更新游戏版本并提交审核。
-
-::: warning 提交审核后发现有需要修改怎么办？
-
-打开我的游戏，找到需要修改的游戏，点击【撤销审核】-【确认】。
-
-:::
-
-![img](https://arkimg.ark.online/1684027758538-9.webp)
