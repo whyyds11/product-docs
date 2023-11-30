@@ -29,24 +29,17 @@
 
 ## 通过脚本创建：
 
-通过脚本你也可以在游戏运行时通过【本地资源库】中的【禁行区】资源ID："Projectile" 动态生成一个【禁行区】对象来使用。在【工程内容】下的脚本目录中新建一个脚本文件，将脚本拖入【对象管理器】中【对象】栏。选中脚本进行编辑，将下列示例代码替换脚本中的`onStart`方法：异步生成一个【禁行区】对象，开启双端同步，位置为（300，0，50），旋转为（0，0，0），缩放倍数为（1，1，1）。打印生成【禁行区】对象的guid。
+通过脚本你也可以在游戏运行时通过【本地资源库】中的【禁行区】资源ID："Projectile" 动态生成一个【禁行区】对象来使用。在【工程内容】下的脚本目录中新建一个脚本文件，将脚本拖入【对象管理器】中【对象】栏。选中脚本进行编辑，将下列示例代码替换脚本中的`onStart`方法：异步生成一个【禁行区】对象，开启双端同步，位置为（300，0，50），旋转为（0，0，0），缩放倍数为（1，1，1）。打印生成【禁行区】对象的gameObjectId。
 
 ```TypeScript
 protected async onStart(): Promise<void> {
     if(SystemUtil.isServer()) {
-        let wall = await Core.GameObject.asyncSpawn({guid: "BlockingVolume", replicates: true, transform: new Transform(new Type.Vector(300, 0, 50), Type.Rotation.zero, Type.Vector.one)}) as Gameplay.BlockingVolume;
-        console.log("wall guid: " + wall.guid);
+        let wall = await GameObject.asyncSpawn("BlockingVolume", {replicates: true, transform: new Transform(new Vector(300, 0, 50), Rotation.zero, Vector.one)}) as BlockingVolume;
+        console.log("wall gameObjectId: " + wall.gameObjectId);
     }
 }
 ```
 
-此处我们也可以通过`spawn`接口生成，但是需要将【禁行区】资源拖入【优先加载栏】或者将【禁行区】资源进行【预加载】来保证生成后我们不需要等待资源下载而导致后续代码失效。
-
-```TypeScript
-// 预加载资源，将下列代码粘贴到脚本中的onStart方法之前
-@Core.Property()
-preloadAssets: string = "BlockingVolume"
-```
 ::: tip
 【禁行区】是一个空间的概念，不仅可以阻止外部的角色进入，同时也可以阻止内部的角色出去。
 :::
@@ -60,45 +53,45 @@ preloadAssets: string = "BlockingVolume"
 :::
 ## 禁行区位置
 
-【禁行区】的位置由继承自父类`GameObject`的`worldLocation`世界位置属性和`relativeLocation`相对位置属性控制，可读可写。你可以在属性面板中修改场景中【禁行区】对象的位置，也可以在代码中动态读写【禁行区】对象的属性来控制它的位置。
+【禁行区】的位置由继承自父类`GameObject`的`worldTransform.position`世界位置属性控制，可读可写。你可以在属性面板中修改场景中【禁行区】对象的位置，也可以在代码中动态读写【禁行区】对象的属性来控制它的位置。
 
 ![img](https://arkimg.ark.online/1684047518627-6.webp)
 
 ```TypeScript
 if(SystemUtil.isServer()) {
-    let wall = await Core.GameObject.asyncSpawn({guid: "BlockingVolume", replicates: true, transform: new Transform(new Type.Vector(300, 0, 50), Type.Rotation.zero, Type.Vector.one)}) as Gameplay.BlockingVolume;
-    wall.worldLocation = new Type.Vector(300, 0, 50);
-    console.log("wall worldLocation: " + wall.worldLocation);
+    let wall = await GameObject.asyncSpawn("BlockingVolume", {replicates: true, transform: new Transform(new Vector(300, 0, 50), Rotation.zero, Vector.one)}) as BlockingVolume;
+    wall.worldTransform.position = new Vector(300, 0, 50);
+    console.log("wall worldTransform.position: " + wall.worldTransform.position);
 }
 ```
 
 ## 禁行区旋转
 
-【禁行区】的旋转由继承自父类`GameObject`的`worldRotation`世界旋转属性和`relativeRotation`相对旋转属性控制，可读可写。你可以在属性面板中修改场景中【禁行区】对象的旋转，也可以在代码中动态读写【禁行区】对象的属性来控制它的位置。
+【禁行区】的旋转由继承自父类`GameObject`的`worldTransform.rotation`世界旋转属性控制，可读可写。你可以在属性面板中修改场景中【禁行区】对象的旋转，也可以在代码中动态读写【禁行区】对象的属性来控制它的位置。
 
 ![img](https://arkimg.ark.online/1684047518628-7.webp)
 
 ```TypeScript
 if(SystemUtil.isServer()) {
-    let wall = await Core.GameObject.asyncSpawn({guid: "BlockingVolume", replicates: true, transform: new Transform(new Type.Vector(300, 0, 50), Type.Rotation.zero, Type.Vector.one)}) as Gameplay.BlockingVolume;
-    wall.worldRotation = new Type.Rotation(45, 0, 0);
-    console.log("wall worldRotation: " + wall.worldRotation);
+    let wall = await GameObject.asyncSpawn("BlockingVolume", {replicates: true, transform: new Transform(new Vector(300, 0, 50), Rotation.zero, Vector.one)}) as BlockingVolume;
+    wall.worldTransform.rotation = new Rotation(45, 0, 0);
+    console.log("wall worldTransform.rotation: " + wall.worldTransform.rotation);
 }
 ```
 
 ## 禁行区大小
 
-【禁行区】的大小可以由继承自父类`GameObject`的`worldScale`世界缩放属性和`relativeScale`相对缩放属性控制，可读可写。当【禁行区】形状为盒体时，XYZ值分别表示盒体的长宽高。当【禁行区】形状为球体时，XY值无效，Z值表示球体半径。此外在代码中，为了突出修改的属性对应的形状，可以使用`setBoxExtent`接口去设置盒体【禁行区】的长宽高，或者使用`setSphereRadius`接口去设置球体【禁行区】的半径。
+【禁行区】的大小可以由继承自父类`GameObject`的`worldTransform.scale`世界缩放属性控制，可读可写。当【禁行区】形状为盒体时，XYZ值分别表示盒体的长宽高。
 
 ![img](https://arkimg.ark.online/1684047518628-8.webp)
 
 ```TypeScript
 // 通过scale属性设置禁行区大小
 if(SystemUtil.isServer()) {
-    let wall = await Core.GameObject.asyncSpawn({guid: "BlockingVolume", replicates: true, transform: new Transform(new Type.Vector(300, 0, 50), Type.Rotation.zero, Type.Vector.one)}) as Gameplay.BlockingVolume;
-    wall.worldScale = new Type.Vector(2, 2, 2);
-    wall.worldScale = new Type.Vector(300, 0, 50);
-    console.log("wall worldScale: " + wall.worldScale);
+    let wall = await GameObject.asyncSpawn("BlockingVolume", {replicates: true, transform: new Transform(new Vector(300, 0, 50), Rotation.zero, Vector.one)}) as BlockingVolume;
+    wall.worldTransform.scale = new Vector(2, 2, 2);
+    wall.worldTransform.scale = new Vector(300, 0, 50);
+    console.log("wall worldTransform.scale: " + wall.worldTransform.scale);
 }
 ```
 
@@ -108,9 +101,9 @@ if(SystemUtil.isServer()) {
 
 ### 【对象管理器】中【对象】栏下的【禁行区】对象：
 
-**使用`asyncFind`接口通过【禁行区】对象的GUID去获取：**
+**使用`asyncFindGameObjectById`接口通过【禁行区】对象的gameObjectId去获取：**
 
-1. 选中【禁行区】对象后右键点击【复制对象ID】获取它的GUID。此处注意区分【禁行区】资源的GUID和【禁行区】对象的GUID。
+1. 选中【禁行区】对象后右键点击【复制对象ID】获取它的gameObjectId。此处注意区分【禁行区】资源的ID和【禁行区】对象的gameObjectId。
 
 ![img](https://arkimg.ark.online/1684047518628-9.webp)
 
@@ -119,8 +112,8 @@ if(SystemUtil.isServer()) {
 ```TypeScript
 protected async onStart(): Promise<void> {
     if(SystemUtil.isServer()) {
-        let wall = await Core.GameObject.asyncFind("13CB1A8B") as Gameplay.BlockingVolume;
-        console.log("wall guid " + wall.guid);
+        let wall = await GameObject.asyncFindGameObjectById("13CB1A8B") as BlockingVolume;
+        console.log("wall gameObjectId " + wall.gameObjectId);
     }
 }
 ```
@@ -134,7 +127,7 @@ protected async onStart(): Promise<void> {
 2. 在脚本的onStart方法中添加下列代码：代码获取脚本挂载的对象并以【禁行区】对象进行接收
 
 ```TypeScript
-let wall = this.gameObject as Gameplay.BlockingVolume;
+let wall = this.gameObject as BlockingVolume;
 ```
 
 ### 动态生成的【禁行区】对象：
@@ -144,8 +137,8 @@ let wall = this.gameObject as Gameplay.BlockingVolume;
 ```TypeScript
 protected async onStart(): Promise<void> {
     if(SystemUtil.isServer()) {
-        let wall = await Core.GameObject.asyncSpawn({guid: "BlockingVolume", replicates: true, transform: new Transform(new Type.Vector(300, 0, 50), Type.Rotation.zero, Type.Vector.one)}) as Gameplay.BlockingVolume;
-        console.log("wall guid: " + wall.guid);
+        let wall = await GameObject.asyncSpawn("BlockingVolume", {replicates: true, transform: new Transform(new Vector(300, 0, 50), Rotation.zero, Vector.one)}) as BlockingVolume;
+        console.log("wall gameObjectId: " + wall.gameObjectId);
     }
 }
 ```
@@ -155,20 +148,20 @@ protected async onStart(): Promise<void> {
 【禁行区】通过`addPassableTarget`和`removePassableTarget`两个接口来设置具体对象的通行权限。当对象获得通过【禁行区】的权限后可以自由通行，未获得权限的对象会受到阻挡（如果对象本身需具备碰撞能力）。将下列示例代码复制到脚本中的`onStart`方法中：首先获取脚本挂载的【禁行区】对象。在客户端获取本地玩家角色后添加两个按键方法：按下“1”键给本地角色添加该【禁行区】的通过权限；按下“2”键给本地角色移除该【禁行区】的通过权限；
 
 ```TypeScript
-let wall = this.gameObject as Gameplay.BlockingVolume;
+let wall = this.gameObject as BlockingVolume;
 
         if(SystemUtil.isClient()) {
-            Gameplay.asyncGetCurrentPlayer().then((player) => {
-                let myself = player.character;
-                
-                InputUtil.onKeyDown(Type.Keys.One, () => {
-                    wall.addPassableTarget(myself);
-                });
-
-                InputUtil.onKeyDown(Type.Keys.Two, () => {
-                    wall.removePassableTarget(myself);
-                });
+           
+            let myself = Player.localPlayer.character;
+            
+            InputUtil.onKeyDown(Keys.One, () => {
+                wall.addPassableTarget(myself);
             });
+
+            InputUtil.onKeyDown(Keys.Two, () => {
+                wall.removePassableTarget(myself);
+            });
+            
         }
 ```
 
@@ -179,22 +172,22 @@ let wall = this.gameObject as Gameplay.BlockingVolume;
 【禁行区】提供`getTargetPassable`接口去获取当前对象是否有通行权限。将下列示例代码补充到上例中：每次设置完本地角色的通过权限后打印结果。
 
 ```TypeScript
-let wall = this.gameObject as Gameplay.BlockingVolume;
+let wall = this.gameObject as BlockingVolume;
 
         if(SystemUtil.isClient()) {
-            Gameplay.asyncGetCurrentPlayer().then((player) => {
-                let myself = player.character;
-                
-                InputUtil.onKeyDown(Type.Keys.One, () => {
-                    wall.addPassableTarget(myself);
-                    console.log("passable: " + wall.getTargetPassable(myself));
-                });
-
-                InputUtil.onKeyDown(Type.Keys.Two, () => {
-                    wall.removePassableTarget(myself);
-                    console.log("passable: " + wall.getTargetPassable(myself));
-                });
+            
+            let myself = Player.localPlayer.character;
+            
+            InputUtil.onKeyDown(Keys.One, () => {
+                wall.addPassableTarget(myself);
+                console.log("passable: " + wall.getTargetPassable(myself));
             });
+
+            InputUtil.onKeyDown(Keys.Two, () => {
+                wall.removePassableTarget(myself);
+                console.log("passable: " + wall.getTargetPassable(myself));
+            });
+            
         }
 ```
 
@@ -203,32 +196,32 @@ let wall = this.gameObject as Gameplay.BlockingVolume;
 【禁行区】通过`clear`和`unblockAll`两个接口来设置具体场景内所有对象的通行权限。调用`clear`接口后，所有对象的通过权限都将被移除；调用`unblockAll`接口后，所有对象都将添加该【禁行区】的通过权限；将下列示例代码补充到上例中：添加两个按键方法：按下“3”键给所有角色移除该【禁行区】的通过权限；按下“4”键给所有角色添加该【禁行区】的通过权限；
 
 ```TypeScript
-let wall = this.gameObject as Gameplay.BlockingVolume;
+let wall = this.gameObject as BlockingVolume;
 
         if(SystemUtil.isClient()) {
-            Gameplay.asyncGetCurrentPlayer().then((player) => {
-                let myself = player.character;
-                
-                InputUtil.onKeyDown(Type.Keys.One, () => {
-                    wall.addPassableTarget(myself);
-                    console.log("passable: " + wall.getTargetPassable(myself));
-                });
-
-                InputUtil.onKeyDown(Type.Keys.Two, () => {
-                    wall.removePassableTarget(myself);
-                    console.log("passable: " + wall.getTargetPassable(myself));
-                });
-                
-                InputUtil.onKeyDown(Type.Keys.Three, () => {
-                    wall.clear();
-                    console.log("passable: " + wall.getTargetPassable(myself));
-                });
-
-                InputUtil.onKeyDown(Type.Keys.Four, () => {
-                    wall.releaseAll();
-                    console.log("passable: " + wall.getTargetPassable(myself));
-                });
+            
+            let myself = Player.localPlayer.character;
+            
+            InputUtil.onKeyDown(Keys.One, () => {
+                wall.addPassableTarget(myself);
+                console.log("passable: " + wall.getTargetPassable(myself));
             });
+
+            InputUtil.onKeyDown(Keys.Two, () => {
+                wall.removePassableTarget(myself);
+                console.log("passable: " + wall.getTargetPassable(myself));
+            });
+            
+            InputUtil.onKeyDown(Keys.Three, () => {
+                wall.clear();
+                console.log("passable: " + wall.getTargetPassable(myself));
+            });
+
+            InputUtil.onKeyDown(Keys.Four, () => {
+                wall.unblockAll();
+                console.log("passable: " + wall.getTargetPassable(myself));
+            });
+            
         }
 ```
 

@@ -26,7 +26,7 @@
 例如当用户按下了'K'按键：
 
 ```ts
-Util.InputUtil.onKeyDown(Type.Keys.K,()=>{
+InputUtil.onKeyDown(Keys.K,()=>{
 
     console.log(`The user presses the K key`);
             
@@ -42,7 +42,7 @@ Util.InputUtil.onKeyDown(Type.Keys.K,()=>{
 例如当用户抬起了'K'按键：
 
 ```ts
-Util.InputUtil.onKeyUp(Type.Keys.K,()=>{
+InputUtil.onKeyUp(Keys.K,()=>{
 
     console.log(`The user lifted the K key`);
             
@@ -58,7 +58,7 @@ Util.InputUtil.onKeyUp(Type.Keys.K,()=>{
 例如当用户按住了'K'按键：
 
 ```ts
-Util.InputUtil.onKeyPress(Type.Keys.K,()=>{
+InputUtil.onKeyPress(Keys.K,()=>{
 
     console.log(`The user holds down the K key`);
     console.log(`Current time ${Global.ElapsedTime()`);
@@ -79,7 +79,7 @@ Util.InputUtil.onKeyPress(Type.Keys.K,()=>{
 例如当用户按下了某个按钮，在其他脚本中需要监听其事件
 
 ```ts
-Events.addLocalListener("onXXXButtonClick",()=>{
+Event.addLocalListener("onXXXButtonClick",()=>{
 
     console.log(`The user pressed the XXX button`);
             
@@ -95,7 +95,7 @@ Events.addLocalListener("onXXXButtonClick",()=>{
 例如当服务端通知客户端玩家升级
 
 ```ts
-Events.addServerListener("LevelUp",(lv:number)=>{
+Event.addServerListener("LevelUp",(lv:number)=>{
 
     console.log(`User upgraded to level ===> ${lv}`);      
 
@@ -113,9 +113,9 @@ Events.addServerListener("LevelUp",(lv:number)=>{
 例如当玩家发动攻击
 
 ```ts
-Events.addClientListener("Attack",(player:Gameplay.Player,skills:number)=>{
+Event.addClientListener("Attack",(player:Player,skills:number)=>{
 
-    console.log(`The player(${player.guid}) uses skill ${skills} to launch an attack.`);
+    console.log(`The player(${player.playerId}) uses skill ${skills} to launch an attack.`);
 
 });
 ```
@@ -131,9 +131,9 @@ Events.addClientListener("Attack",(player:Gameplay.Player,skills:number)=>{
 例如服务端需要广播玩家进入房间的信息时
 
 ```ts
-Events.addPlayerJoinedListener((player:Gameplay.Player)=>{
+Player.onPlayerJoin.add((player:Player)=>{
 
-    console.log(`The player(${player.guid}) enters the room`);
+    console.log(`The player(${player.playerId}) enters the room`);
 
 });
 ```
@@ -147,23 +147,23 @@ Events.addPlayerJoinedListener((player:Gameplay.Player)=>{
 例如服务端需要广播玩家离开房间的信息时
 
 ```ts
-Events.addPlayerLeftListener((player:Gameplay.Player)=>{
+Player.onPlayerLeave.add((player:Player)=>{
 
-    console.log(`Players(${player.guid}) leave the room`);
+    console.log(`Players(${player.playerId}) leave the room`);
 
 });
 ```
 
 ### 客户端派发器
 
-#### 派发事件到本地（dispatchLocal）
+#### 派发事件到本地（dispatchToLocal）
 
 对应 [2.1.2 - 1](https://meta.feishu.cn/wiki/wikcnVCCqmlaOhhI3tpeuy42Hvh#EQIial)，当用户按下了某个按钮，在其他脚本中需要监听此事件
 
 此脚本可编写如下，**此事件只能在本地派发**
 
 ```ts
-Events.dispatchLocal("onXXXButtonClick");
+Event.dispatchToLocal("onXXXButtonClick");
 ```
 
 #### 派发事件到服务端（dispatchToServer）
@@ -174,7 +174,7 @@ Events.dispatchLocal("onXXXButtonClick");
 
 ```ts
 let skills:number = 6; 
-Events.dispatchToServer("Attack",skills);
+Event.dispatchToServer("Attack",skills);
 ```
 
 ### 服务端派发器
@@ -188,33 +188,14 @@ Events.dispatchToServer("Attack",skills);
 此脚本可编写如下，**此事件只能在服务端派发**
 
 ```ts
-Events.addClientListener("Attack",(player:Gameplay.Player,skills:number)=>{
+Event.addClientListener("Attack",(player:Player,skills:number)=>{
 
-    console.log(`The player(${player.guid}) uses skill ${skills} to launch an attack.`);
+    console.log(`The player(${player.playerId}) uses skill ${skills} to launch an attack.`);
 
     let level:number = 66;
 
     //通知player接收LevelUp事件，事件数据为level
-    Events.dispatchToClient(player,"LevelUp",level);
-    
-});
-```
-
-#### 派发事件到房间内所有客户端（dispatchToAllRoomClient）
-
-同上情形，若想将该玩家的升级消息同步至房间内所有客户端
-
-此脚本可编写如下，**此事件只能在服务端派发**
-
-```ts
-Events.addClientListener("Attack",(player:Gameplay.Player,skills:number)=>{
-
-    console.log(`The player(${player.guid}) uses skill ${skills} to launch an attack.`);
-
-    let level:number = 66;
-
-    //通知房间内所有玩家接收LevelUp事件，事件数据为player升级到level
-    Events.dispatchToAllRoomClient("LevelUp",player,level);
+    Event.dispatchToClient(player,"LevelUp",level);
     
 });
 ```
@@ -226,24 +207,24 @@ Events.addClientListener("Attack",(player:Gameplay.Player,skills:number)=>{
 此脚本可编写如下，**此事件只能在服务端派发**
 
 ```ts
-Events.addClientListener("Attack",(player:Gameplay.Player,skills:number)=>{
+Event.addClientListener("Attack",(player:Player,skills:number)=>{
 
-    console.log(`The player(${player.guid}) uses skill ${skills} to launch an attack.`);
+    console.log(`The player(${player.playerId}) uses skill ${skills} to launch an attack.`);
 
     let level:number = 66;
     
     //通知所有玩家接收LevelUp事件，扩散范围以player为中心，事件数据为player升级到level
-    Events.dispatchToAllClient(player,"LevelUp",player,level);
+    Event.dispatchToAllClient("LevelUp",player,level);
     
 });
 ```
 
-#### 派发事件到本地（dispatchLocal）
+#### 派发事件到本地（dispatchToLocal）
 
 对应 [2.1.2 - 1](https://meta.feishu.cn/wiki/wikcnVCCqmlaOhhI3tpeuy42Hvh#EQIial)，**此事件只能在本地派发**
 
 ```ts
-Events.dispatchLocal("eventName");
+Event.dispatchToLocal("eventName");
 ```
 
 ## 使用事件系统的注意事项与建议
@@ -277,11 +258,11 @@ Events.dispatchLocal("eventName");
 示例如下：
 
 ```ts
-@Core.Class
-export default class TestEvents extends Core.Script {
+@Class
+export default class TestEvents extends Script {
 
     //声明事件数组
-    myEvents = new Array<Events.EventListener>();
+    myEvents = new Array<EventListener>();
 
     //声明一个计数变量
     public temp:number;
@@ -292,23 +273,23 @@ export default class TestEvents extends Core.Script {
         this.temp = 0;
 
         //根据GUID持有cube对象
-        let cube = await Core.GameObject.Find(`48A8055A40BBA143D723B19BDB2D21ED`);
+        let cube = await GameObject.asyncFindGameObjectById(`48A8055A40BBA143D723B19BDB2D21ED`);
 
 
         //添加本地事件监听，并将监听器对象保存到事件数组
-        this.myEvents.push(Util.InputUtil.addLocalListener("TestEvent1",()=>{
+        this.myEvent.push(InputUtil.addLocalListener("TestEvent1",()=>{
             console.log("========================>");
             console.log(`this.temp ===> ${this.temp}`);
         }));
 
-        this.myEvents.push(Util.InputUtil.onKeyDown(Type.Keys.one,()=>{
+        this.myEvent.push(InputUtil.onKeyDown(Keys.one,()=>{
             this.temp ++;
-            Events.dispatchLocal("TestEvent1");
+            Event.dispatchToLocal("TestEvent1");
         }));
 
-        this.myEvents.push(Util.InputUtil.onKeyDown(Type.Keys.Two,()=>{
+        this.myEvent.push(InputUtil.onKeyDown(Keys.Two,()=>{
             cube.Destroy();
-            Events.dispatchLocal("TestEvent1");
+            Event.dispatchToLocal("TestEvent1");
         }));
     }
 
@@ -318,7 +299,7 @@ export default class TestEvents extends Core.Script {
         console.log(`Into onDestroy()`);
 
         //在对象被销毁时，遍历所有事件对象，关闭所有事件监听
-        this.myEvents.forEach(element => {
+        this.myEvent.forEach(element => {
             element.disconnect();
         });
     }

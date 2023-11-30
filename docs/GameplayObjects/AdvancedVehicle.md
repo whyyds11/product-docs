@@ -126,8 +126,8 @@ export default class NewScript extends Script {
             let player = Player.localPlayer;
             let endLoc = this.trigger.worldTransform.position; //获取当前触发器位置，做为下车位置
             this.interactiveObj.leave(endLoc.add(new mw.Vector(0, 200, 50))); //激活交互物,并设置一个下车位置
-            player.character.setCollision(mw.PropertyStatus.On); //打开角色碰撞
             this.vehicle.owner = null; //清除载具控制权
+            player.character.setCollision(mw.PropertyStatus.On); //打开角色碰撞
         });
 
     }

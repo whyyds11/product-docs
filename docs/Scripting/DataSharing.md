@@ -21,21 +21,21 @@
 DataStorage.setTemporaryStorage(false);
 ```
 
-- 然后我们通过 asyncSetCustomData()函数将数据存储到开发者平台上，这样我们在开发者平台就会看到这份数据。也可以通过 asyncGetCustomData()函数获取到该数据。
+- 然后我们通过 asyncSetData()函数将数据存储到开发者平台上，这样我们在开发者平台就会看到这份数据。也可以通过 asyncGetData()函数获取到该数据。
 
 ```ts
 //设置一个key为“hp”的数据，Value为“50”
-await DataStorage.asyncSetCustomData("hp", "50");
+await DataStorage.asyncSetData("hp", "50");
 //设置一个key为“lv”的数据，Value为“1”
-await DataStorage.asyncSetCustomData("lv", "1");
+await DataStorage.asyncSetData("lv", "1");
 //设置一个key为“coin”的数据，Value为“9999”
-await DataStorage.asyncSetCustomData("coin", "9999");
+await DataStorage.asyncSetData("coin", "9999");
 //获取key为“hp”的数据
-let data1 = await DataStorage.asyncGetCustomData("hp");
+let data1 = await DataStorage.asyncGetData("hp");
 //获取key为“lv”的数据
-let data2 = await DataStorage.asyncGetCustomData("lv");
+let data2 = await DataStorage.asyncGetData("lv");
 //获取key为“coin”的数据
-let data3 = await DataStorage.asyncGetCustomData("coin");
+let data3 = await DataStorage.asyncGetData("coin");
 ```
 
 ##### 2.2 查看开发者平台中游戏数据

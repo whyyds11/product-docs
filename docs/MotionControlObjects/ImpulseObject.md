@@ -77,21 +77,30 @@ export default class NewScript1 extends Script {
 
 ```ts
 @Component
-export default class NewScript1 extends Script {
+export default class NewScript extends Script {
 
     /** 当脚本被实例后，会在第一帧更新前调用此函数 */
     protected onStart(): void {
 
-        let impulseMain = this.gameObject as mw.Impulse; //指定冲量对象
+        //通过GUID来动态创建一个冲量对象,并设置世界坐标
+        let impulseSpawn = GameObject.spawn<Impulse>("PhysicsImpulse",{
+            replicates:true,
+            transform:new Transform(new Vector(300,0,0),Rotation.zero,Vector.one)
+        });
 
-        /*
-        冲量对象提供了setImpulseEnabled()，可以动态设置冲量力开关，合理的使用这一接口，可以实现类如炸弹爆炸的效果；
-        */
-        impulseMain.enable = false;  //将冲量对象设置为关闭状态
+        /**
+         * 设置冲量对象的属性，制作一个向Z轴的绝对冲量；
+         */
+        impulseSpawn.impulseForceType = ImpulseForceType.VectorForce;
+        impulseSpawn.impulseType = ImpulseType.Absolute;
+        impulseSpawn.impulseVector = new Vector(0,0,800);
+
+        //冲量对象提供了可以动态设置冲量力开关的接口，合理的使用这一接口，可以实现类如炸弹爆炸的效果；
+        impulseSpawn.enable = false;  //将冲量对象设置为关闭状态
 
         //通过UI按钮发送一个本地事件，来触发冲量对象开启
         Event.addLocalListener("boom", () => {
-            impulseMain.enable = true;  //将冲量对象设置为开启状态
+            impulseSpawn.enable = true;  //将冲量对象设置为开启状态
         });
     }
 }

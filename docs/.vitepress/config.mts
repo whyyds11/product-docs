@@ -1,4 +1,4 @@
-import type { DefaultTheme } from 'metaapp-prodigytech-doc-theme'
+import type { DefaultTheme } from 'doc-theme-323'
 import { defineConfigWithTheme } from 'vitepress'
 
 export const sidebar: DefaultTheme.Config['sidebar'] = [
@@ -97,7 +97,10 @@ export default defineConfigWithTheme<DefaultTheme.Config>({
             text: '按键绑定（针对PC端）及预设UI',
             link: '/UI/KeybindsandPremadeUI.md'
           },
-          { text: 'UI表现与性能优化', link: '/UI/UIPerformanceandOptimization.md' },
+          {
+            text: 'UI表现与性能优化',
+            link: '/UI/UIPerformanceandOptimization.md'
+          },
           {
             text: 'UI脚本的生命周期及事件说明',
             link: '/UI/LifeCycleandEventDescriptionofUIScripts.md'
@@ -135,10 +138,8 @@ export default defineConfigWithTheme<DefaultTheme.Config>({
           { text: '热武器', link: '/GameplayObjects/HotWeapon.md' },
           { text: '游泳区域', link: '/GameplayObjects/SwimmingArea.md' },
           { text: '初生点', link: '/GameplayObjects/SpawnPoint.md' },
-          { text: '投掷物', link: '/GameplayObjects/Projectiles.md' },
+          { text: '对象发射器', link: '/GameplayObjects/ObjectLauncher.md' },
           { text: '禁行区', link: '/GameplayObjects/BlockingArea.md' },
-          { text: '点光源', link: '/GameplayObjects/PointLight.md' },
-          { text: '非玩家对象', link: '/GameplayObjects/NPCs.md' },
           { text: '音效', link: '/GameplayObjects/SoundEffect.md' },
           { text: '特效', link: '/GameplayObjects/Effects.md' }
         ]
@@ -175,7 +176,7 @@ export default defineConfigWithTheme<DefaultTheme.Config>({
           { text: '动画与姿态', link: '/Role/AnimationAndStane.md' },
           { text: '角色插槽', link: '/Role/Slot.md' },
           { text: '布娃娃功能', link: '/Role/Ragdoll.md' },
-          { text: '头顶名称', link: '/Role/OverHeadName.md' },
+          { text: '头顶名称', link: '/Role/OverHeadName.md' }
         ]
       },
       {
@@ -259,6 +260,8 @@ export default defineConfigWithTheme<DefaultTheme.Config>({
         collapsible: true,
         collapsed: true,
         items: [
+          { text: 'v0.27.0.1', link: '/ReleaseNote/v0.27.0.1.md' },
+          { text: 'v0.27.0.0', link: '/ReleaseNote/v0.27.0.0.md' },
           { text: 'v0.26.0.2', link: '/ReleaseNote/v0.26.0.2.md' },
           { text: 'v0.26.0.1', link: '/ReleaseNote/v0.26.0.1.md' },
           { text: 'v0.26.0.0', link: '/ReleaseNote/v0.26.0.0.md' },
@@ -331,10 +334,10 @@ export default defineConfigWithTheme<DefaultTheme.Config>({
         text: '027 版本',
         items: [
           {
-            text: '主版本',
-            link: 'https://docs.ark.online/',
+            text: '026 版本',
+            link: 'https://docs-026.ark.online/',
             path: true
-          }          
+          }
         ]
       }
     ],
@@ -356,7 +359,7 @@ export default defineConfigWithTheme<DefaultTheme.Config>({
     outline: [2, 4],
     editLink: {
       pattern:
-        'https://github.com/prodigytech-doc/product-docs/tree/release-027/docs/:path',
+        'https://github.com/prodigytech-doc/product-docs/tree/main/docs/:path',
       text: '编辑'
     },
     feedback: 'https://github.com/prodigytech-doc/product-docs/',

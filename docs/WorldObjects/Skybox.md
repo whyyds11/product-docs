@@ -32,154 +32,61 @@
 
 - 实际应用：我们可以根据不同的环境切换不同的天空球预设，便捷的完成天空球的切换，而不需要每个参数都设置一遍。也可以通过预设功能，进行快速的还原。
 - 实现步骤：
-- 首先我们添加几个UI按钮，方便我们切换天空球预设，当然可以通过其他的机制进行切换。然后编写UI脚本。
+- 首先我们添加几个UI按钮，方便我们切换天空球预设，当然可以通过其他的机制进行切换。然后在UIDefault脚本中的onStart方法补充下列代码。
 
 ```ts
-@UI.UICallOnly('')
-export default class UIDefault extends UI.UIBehavior {
-    Character: Gameplay.Character;
-    /* 解析资源ID列表 */
-    private resolveString(assetIds: string): string[] {
-        let assetIdArray: string[] = new Array<string>();
-        let assetId: string = "";
-        let s = assetIds.split("");
-        for (let a of s) {
-            if (a == ",") {
-                assetIdArray.push(assetId);
-                assetId = "";
-            } else {
-                assetId += a;
-            }
-        }
-        if (assetId) {
-            assetIdArray.push(assetId);
-        }
-        return assetIdArray;
-    }
+    //找到对应的预设1按钮
+    const Preset1Btn = this.uiWidgetBase.findChildByPath('RootCanvas/Button_1') as Button
+    //找到对应的预设2按钮
+    const Preset2Btn = this.uiWidgetBase.findChildByPath('RootCanvas/Button_2') as Button
+    //找到对应的预设3按钮
+    const Preset3Btn = this.uiWidgetBase.findChildByPath('RootCanvas/Button_3') as Button
+    //找到对应的预设4按钮
+    const Preset4Btn = this.uiWidgetBase.findChildByPath('RootCanvas/Button_4') as Button
+    //找到对应的预设5按钮
+    const Preset5Btn = this.uiWidgetBase.findChildByPath('RootCanvas/Button_5') as Button
+    //找到对应的预设6按钮
+    const Preset6Btn = this.uiWidgetBase.findChildByPath('RootCanvas/Button_6') as Button
+    //找到对应的预设7按钮
+    const Preset7Btn = this.uiWidgetBase.findChildByPath('RootCanvas/Button_7') as Button
+    //找到对应的预设8按钮
+    const Preset8Btn = this.uiWidgetBase.findChildByPath('RootCanvas/Button_8') as Button
 
-    /* 初始化资源 */
-    private initAssets(assetIds: string): void {
-        let assetIdArray = this.resolveString(assetIds);
-        for (let element of assetIdArray) {
-            Util.AssetUtil.asyncDownloadAsset(element)
-        }
-    }
-
-    //声明天空球对象
-    sky:Gameplay.SkyBox;
-
-    /** 仅在游戏时间对非模板实例调用一次 */
-    protected async onStart() {
-        //初始化动画资源 
-        this.initAssets("95777,61245")
-        //设置能否每帧触发onUpdate
-        this.canUpdate = false;
-
-        //找到对应的跳跃按钮
-        const JumpBtn = this.uiWidgetBase.findChildByPath('RootCanvas/Button_Jump') as UI.Button
-        const AttackBtn = this.uiWidgetBase.findChildByPath('RootCanvas/Button_Attack') as UI.Button
-        const InteractBtn = this.uiWidgetBase.findChildByPath('RootCanvas/Button_Interact') as UI.Button
-
-        //找到对应的预设1按钮
-        const Preset1Btn = this.uiWidgetBase.findChildByPath('RootCanvas/Button_1') as UI.Button
-        //找到对应的预设2按钮
-        const Preset2Btn = this.uiWidgetBase.findChildByPath('RootCanvas/Button_2') as UI.Button
-        //找到对应的预设3按钮
-        const Preset3Btn = this.uiWidgetBase.findChildByPath('RootCanvas/Button_3') as UI.Button
-        //找到对应的预设4按钮
-        const Preset4Btn = this.uiWidgetBase.findChildByPath('RootCanvas/Button_4') as UI.Button
-        //找到对应的预设5按钮
-        const Preset5Btn = this.uiWidgetBase.findChildByPath('RootCanvas/Button_5') as UI.Button
-        //找到对应的预设6按钮
-        const Preset6Btn = this.uiWidgetBase.findChildByPath('RootCanvas/Button_6') as UI.Button
-        //找到对应的预设7按钮
-        const Preset7Btn = this.uiWidgetBase.findChildByPath('RootCanvas/Button_7') as UI.Button
-        //找到对应的预设8按钮
-        const Preset8Btn = this.uiWidgetBase.findChildByPath('RootCanvas/Button_8') as UI.Button
-
-        this.sky = await Core.GameObject.asyncFind("4B3D5D4C44CEB3DB0432A3BAD536C315") as Gameplay.SkyBox
-
-        //点击跳跃按钮,异步获取人物后执行跳跃
-        JumpBtn.onPressed.add(() => {
-            if (this.Character) {
-                this.Character.jump();
-            } else {
-                Gameplay.asyncGetCurrentPlayer().then((player) => {
-                    this.Character = player.character;
-                    //角色执行跳跃功能
-                    this.Character.jump();
-                });
-            }
-        })
-
-        //点击攻击按钮,异步获取人物后执行攻击动作
-        AttackBtn.onPressed.add(() => {
-            Gameplay.asyncGetCurrentPlayer().then((player) => {
-                this.Character = player.character;
-                //让动画只在上半身播放
-                let anim1 = player.character.loadAnimation("61245");
-                anim1.slot = Gameplay.AnimSlot.Upper;
-                //角色执行攻击动作
-                if (anim1.isPlaying) {
-                    return
-                } else {
-                    anim1.play();
-                }
-            });
-        })
-
-        //点击交互按钮,异步获取人物后执行交互动作
-        InteractBtn.onPressed.add(() => {
-            Gameplay.asyncGetCurrentPlayer().then((player) => {
-                this.Character = player.character;
-                //让动画只在上半身播放
-                let anim2 = player.character.loadAnimation("95777");
-                anim2.slot = Gameplay.AnimSlot.Upper;
-                //角色执行交互动作
-                if (anim2.isPlaying) {
-                    return
-                } else {
-                    anim2.play();
-                }
-            });
-
-        })
-
-        //点击按钮，切换天空球预设1
-        Preset1Btn.onPressed.add(() => {
-            this.sky.skyPreset = 0;
-        })
-        //点击按钮，切换天空球预设2
-        Preset2Btn.onPressed.add(() => {
-            this.sky.skyPreset = 1;
-        })
-        //点击按钮，切换天空球预设3
-        Preset3Btn.onPressed.add(() => {
-            this.sky.skyPreset = 2;
-        })
-        //点击按钮，切换天空球预设4
-        Preset4Btn.onPressed.add(() => {
-            this.sky.skyPreset = 3;
-        })
-        //点击按钮，切换天空球预设5
-        Preset5Btn.onPressed.add(() => {
-            this.sky.skyPreset = 4;
-        })
-        //点击按钮，切换天空球预设6
-        Preset6Btn.onPressed.add(() => {
-            this.sky.skyPreset = 5;
-        })
-        //点击按钮，切换天空球预设7
-        Preset7Btn.onPressed.add(() => {
-            this.sky.skyPreset = 6;
-        })
-        //点击按钮，切换天空球预设8
-        Preset8Btn.onPressed.add(() => {
-            this.sky.skyPreset = 7;
-        })
-    }
-
+    //点击按钮，切换天空球预设1
+    Preset1Btn.onPressed.add(() => {
+        Skybox.preset = 0;
+    })
+    //点击按钮，切换天空球预设2
+    Preset2Btn.onPressed.add(() => {
+        Skybox.preset = 1;
+    })
+    //点击按钮，切换天空球预设3
+    Preset3Btn.onPressed.add(() => {
+        Skybox.preset = 2;
+    })
+    //点击按钮，切换天空球预设4
+    Preset4Btn.onPressed.add(() => {
+        Skybox.preset = 3;
+    })
+    //点击按钮，切换天空球预设5
+    Preset5Btn.onPressed.add(() => {
+        Skybox.preset = 4;
+    })
+    //点击按钮，切换天空球预设6
+    Preset6Btn.onPressed.add(() => {
+        Skybox.preset = 5;
+    })
+    //点击按钮，切换天空球预设7
+    Preset7Btn.onPressed.add(() => {
+        Skybox.preset = 6;
+    })
+    //点击按钮，切换天空球预设8
+    Preset8Btn.onPressed.add(() => {
+        Skybox.preset = 7;
+    })
 }
+
+
 ```
 
 - 效果图：
@@ -197,7 +104,7 @@ export default class UIDefault extends UI.UIBehavior {
 
 ```ts
 //设置天空球贴图
-this.sky.skyDomeTextureAssetByID = "32676"
+Skybox.skyDomeTextureID = "32676"
 ```
 
 ### 天空球亮度
@@ -211,7 +118,7 @@ this.sky.skyDomeTextureAssetByID = "32676"
 
 ```ts
 //设置天空球亮度
-this.sky.skyDomeIntensity = 1;
+Skybox.skyDomeIntensity = 1;
 ```
 
 ### 天空球整体颜色
@@ -225,7 +132,7 @@ this.sky.skyDomeIntensity = 1;
 
 ```ts
 //设置天空球整体为红色
-this.sky.skyDomeTint = new Type.LinearColor(255,0,0)
+Skybox.skyDomeBaseColor = new LinearColor(255,0,0)
 ```
 
 ### 渐变功能
@@ -239,9 +146,9 @@ this.sky.skyDomeTint = new Type.LinearColor(255,0,0)
 
 ```ts
 //开启天空球渐变效果
-this.sky.skyDomeGradientEnable = true;
+Skybox.skyDomeGradientEnabled = true;
 //关闭天空球渐变效果
-this.sky.skyDomeGradientEnable = false;
+Skybox.skyDomeGradientEnabled = false;
 ```
 
 #### 天空球顶层颜色
@@ -251,7 +158,7 @@ this.sky.skyDomeGradientEnable = false;
 
 ```ts
 //设置天空球顶层颜色
-this.sky.skyDomeTopTint = new Type.LinearColor(255,0,0);
+Skybox.skyDomeTopColor = new LinearColor(255,0,0);
 ```
 
 #### 天空球上层颜色
@@ -261,7 +168,7 @@ this.sky.skyDomeTopTint = new Type.LinearColor(255,0,0);
 
 ```ts
 //设置天空球上层颜色
-this.sky.skyDomeHorizontalTint = new Type.LinearColor(255,0,0);
+Skybox.skyDomeMiddleColor = new LinearColor(255,0,0);
 ```
 
 #### 天空球下层颜色
@@ -271,7 +178,7 @@ this.sky.skyDomeHorizontalTint = new Type.LinearColor(255,0,0);
 
 ```ts
 //设置天空球下层颜色
-this.sky.skyDomeBotTint = new Type.LinearColor(255,0,0);
+Skybox.skyDomeBottomColor = new LinearColor(255,0,0);
 ```
 
 #### 地平线渐出
@@ -292,7 +199,7 @@ this.sky.skyDomeBotTint = new Type.LinearColor(255,0,0);
 
 ```ts
 //设置地平线渐出效果
-this.sky.skyDomeHorizontalFallOff = 10;
+Skybox.skyDomeHorizontalFallOff = 10;
 ```
 
 ### 星星功能
@@ -314,7 +221,7 @@ this.sky.skyDomeHorizontalFallOff = 10;
 
 ```ts
 //设置地平线渐出效果
-this.sky.skyDomeHorizontalFallOff = 10;
+Skybox.skyDomeHorizontalFallOff = 10;
 ```
 
 #### 星星贴图
@@ -324,7 +231,7 @@ this.sky.skyDomeHorizontalFallOff = 10;
 
 ```ts
 //设置天空球的星星贴图
-this.sky.starTextureAssetByID = "";
+Skybox.starTextureID = "";
 ```
 
 **注意**目前我们仅有一种星星贴图，后续会添加更多贴图资源。
@@ -345,7 +252,7 @@ this.sky.starTextureAssetByID = "";
 
 ```ts
 //设置天空球的星星亮度
-this.sky.starIntensity = 1;
+Skybox.starIntensity = 1;
 ```
 
 
@@ -365,7 +272,7 @@ this.sky.starIntensity = 1;
 
 ```ts
 //设置天空球的星星密度
-this.sky.starTiling = 10;
+Skybox.starDensity = 10;
 ```
 
 ### 太阳
@@ -383,9 +290,9 @@ this.sky.starTiling = 10;
 
 ```ts
 //开启太阳功能
-this.sky.sunEnable = true;
+Skybox.sunVisible = true;
 //关闭太阳功能
-this.sky.sunEnable = false;
+Skybox.sunVisible = false;
 ```
 
 #### 太阳贴图
@@ -398,7 +305,7 @@ this.sky.sunEnable = false;
 
 ```ts
 //设置太阳的贴图
-this.sky.sunTextureAssetByID = "";
+Skybox.sunTextureID = "";
 ```
 
 #### 太阳亮度
@@ -421,7 +328,7 @@ this.sky.sunTextureAssetByID = "";
 
 ```ts
 //设置太阳光的强度
-this.sky.sunIntensity = 1;
+Skybox.sunIntensity = 1;
 ```
 
 
@@ -435,7 +342,7 @@ this.sky.sunIntensity = 1;
 
 ```ts
 //设置太阳光的颜色
-this.sky.sunTint = new Type.LinearColor(255, 0, 0);
+Skybox.sunColor = new LinearColor(255, 0, 0);
 ```
 
 #### 太阳大小
@@ -448,7 +355,7 @@ this.sky.sunTint = new Type.LinearColor(255, 0, 0);
 
 ```ts
 //设置太阳光大小
-this.sky.sunSize = 20;
+Skybox.sunSize = 20;
 ```
 ### 月亮
 #### 是否开启月亮
@@ -463,9 +370,9 @@ this.sky.sunSize = 20;
 
 ```ts
 //开启月亮功能
-this.sky.moonEnable = true;
+Skybox.moonVisible = true;
 //关闭月亮功能
-this.sky.moonEnable = false;
+Skybox.moonVisible = false;
 ```
 
 #### 月亮贴图
@@ -478,7 +385,7 @@ this.sky.moonEnable = false;
 
 ```ts
 //月亮的贴图
-this.sky.moonTextureAssetByID = "";
+Skybox.moonTextureID = "";
 ```
 
 #### 月亮亮度
@@ -501,7 +408,7 @@ this.sky.moonTextureAssetByID = "";
 
 ```ts
 //设置月亮光的强度
-this.sky.moonIntensity = 1;
+Skybox.moonIntensity = 1;
 ```
 
 
@@ -515,7 +422,7 @@ this.sky.moonIntensity = 1;
 
 ```ts
 //设置月亮的颜色
-this.sky.moonTint = new Type.LinearColor(255, 0, 0);
+Skybox.moonColor = new LinearColor(255, 0, 0);
 ```
 
 #### 月亮大小
@@ -528,7 +435,7 @@ this.sky.moonTint = new Type.LinearColor(255, 0, 0);
 
 ```ts
 //设置月亮大小
-this.sky.moonSize = 20;
+Skybox.moonSize = 20;
 ```
 
 ### 云
@@ -542,9 +449,9 @@ this.sky.moonSize = 20;
 
 ```ts
 //开启云功能
-this.sky.cloudEnable = true;
+Skybox.cloudVisible = true;
 //关闭云功能
-this.sky.cloudEnable = false;
+Skybox.cloudVisible = false;
 ```
 
 #### 云贴图
@@ -557,7 +464,7 @@ this.sky.cloudEnable = false;
 
 ```ts
 //设置云贴图
-this.sky.cloudTextureAssetByID = "";
+Skybox.cloudTextureID = "";
 ```
 
 #### 云透明度
@@ -576,7 +483,7 @@ this.sky.cloudTextureAssetByID = "";
 
 ```ts
 //设置云透明度
-this.sky.cloudOpacity = 1;
+Skybox.cloudOpacity = 1;
 ```
 
 #### 云颜色
@@ -589,7 +496,7 @@ this.sky.cloudOpacity = 1;
 
 ```ts
 //设置云的颜色
-this.sky.cloudTint = new Type.LinearColor(255, 0, 0);
+Skybox.cloudColor = new LinearColor(255, 0, 0);
 ```
 #### 云密度
 
@@ -607,7 +514,7 @@ this.sky.cloudTint = new Type.LinearColor(255, 0, 0);
 
 ```ts
 //设置云密度
-this.sky.cloudDensity = 1;
+Skybox.cloudDensity = 1;
 ```
 
 #### 云速度
@@ -626,7 +533,7 @@ this.sky.cloudDensity = 1;
 
 ```ts
 //设置云速度
-this.sky.cloudSpeed = 1;
+Skybox.cloudSpeed = 1;
 ```
 
 ## 如何制作生成天空球贴图？

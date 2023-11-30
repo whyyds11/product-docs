@@ -36,7 +36,7 @@
 默认编辑器不会开启脚本 onUpdate 的生命周期，需要开发者自行调用
 
 ```ts
-this. bUseUpdate = true;
+this. useUpdate = true;
 ```
 
 #### isRunningClient( ) : boolean
@@ -48,8 +48,8 @@ this. bUseUpdate = true;
 #### 脚本示例：
 
 ```ts
-@Core.Class
-export default class TestScript extends Core.Script {
+@Component
+export default class TestScript extends Script {
     protected onStart(): void {
 
         //开启onUpdate的函数
@@ -61,19 +61,19 @@ export default class TestScript extends Core.Script {
         if (this.isRunningClient()) {   //客户端===>
 
             //根据GUID持有cube对象
-            let cube = Core.GameObject.find(`48A8055A40BBA143D723B19BDB2D21ED`);
+            let cube = GameObject.findGameObjectById(`48A8055A40BBA143D723B19BDB2D21ED`);
 
             this.myLog(`Into Client onStart()`);
 
             //向服务器派发删除cube事件，并将cube对象发送至服务端
-            Events.dispatchToServer("DeleteCube", cube);
+            Event.dispatchToServer("DeleteCube", cube);
         }
         else {                          //服务端===>
 
             this.myLog(`Into Server onStart()`);
 
             //监听客户端删除cube的事件
-            Events.addClientListener("DeleteCube", (player, cube: Core.GameObject) => {
+            Event.addClientListener("DeleteCube", (player, cube: GameObject) => {
 
                 //删除cube对象
                 cube.destroy();
@@ -137,13 +137,13 @@ export default class TestScript extends Core.Script {
 **脚本示例：**
 
 ```ts
-@Core.Class
-export default class TestScript extends Core.Script {
+@Component
+export default class TestScript extends Script {
 
     //声明一些属性
-    public v3:Type.Vector;
-    public level:number;
-    public name:string;
+    public v3: Vector;
+    public level: number;
+    public name: string;
 
     protected onStart(): void {
     
@@ -158,7 +158,7 @@ export default class TestScript extends Core.Script {
     //初始化属性的函数
     public initUser()
     {
-        this.v3 = Type.Vector.ZERO;
+        this.v3 = Vector.ZERO;
         this.level = 0;
         this.name = `userName`;
     
@@ -168,7 +168,7 @@ export default class TestScript extends Core.Script {
     public initEvents()
     {
     
-        Events.addServerListener("eventName",parm);
+        Event.addServerListener("eventName",parm);
     
     }
    
@@ -192,8 +192,8 @@ export default class TestScript extends Core.Script {
 例：在做连击的判断中，需要对计时器做终止或重新计时的需求，此时 setTimeout 无法满足
 
 ```ts
-@Core.Class
-export default class TestScript extends Core.Script {
+@Component
+export default class TestScript extends Script {
 
     /** 是否可点击 */
     isCanHit = true;
@@ -216,7 +216,7 @@ export default class TestScript extends Core.Script {
     protected onStart(): void {
     
         //开启onUpdate的函数
-        this.bUseUpdate = true;
+        this.useUpdate = true;
         
     }
     
@@ -288,11 +288,11 @@ export default class TestScript extends Core.Script {
 **代码示例：**
 
 ```ts
-@Core.Class
-export default class TestEvents extends Core.Script {
+@Component
+export default class TestEvents extends Script {
 
     //声明事件数组
-    myEvents = new Array<Events.EventListener>();
+    myEvents = new Array<EventListener>();
 
     //声明一个计数变量
     public temp:number;
@@ -303,25 +303,25 @@ export default class TestEvents extends Core.Script {
         this.temp = 0;
 
         //根据GUID持有cube对象
-        let cube = await Core.GameObject.find(`48A8055A40BBA143D723B19BDB2D21ED`);
+        let cube = await GameObject.findGameObjectById(`48A8055A40BBA143D723B19BDB2D21ED`);
 
 
         //添加本地事件监听，并将监听器对象保存到事件数组
-        this.myEvents.push(Events.AddLocalListener("TestEvent1",()=>{
+        this.myEvent.push(Event.addLocalListener("TestEvent1",()=>{
             console.log("========================>");
             console.log(`this.temp ===> ${this.temp}`);
         }));
 
         //当按下按键‘K’
-        this.myEvents.push(Events.OnKeyDown(Type.Keys.K,()=>{
+        this.myEvent.push(InputUtil.OnKeyDown(Keys.K,()=>{
             this.temp ++;
-            Events.DispatchLocal("TestEvent1");
+            Event.dispatchToLocal("TestEvent1");
         }));
 
         //当按下横排按键‘L’
-        this.myEvents.push(Events.OnKeyDown(Type.Keys.L,()=>{
+        this.myEvent.push(InputUtil.OnKeyDown(Keys.L,()=>{
             cube.Destroy();
-            Events.DispatchLocal("TestEvent1");
+            Event.dispatchToLocal("TestEvent1");
         }));
     }
 
@@ -330,7 +330,7 @@ export default class TestEvents extends Core.Script {
         console.log(`Into onDestroy()`);
 
         //在对象被销毁时，遍历所有事件对象，关闭所有事件监听
-        this.myEvents.forEach(element => {
+        this.myEvent.forEach(element => {
             element.disconnect();
         });
     }

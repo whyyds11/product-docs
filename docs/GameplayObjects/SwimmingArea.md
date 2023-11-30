@@ -20,11 +20,6 @@
 | ------ | ---- | 
 | `流体摩擦力`| 角色在游泳区域内的摩擦力，影响角色移动的速度 |
 
-#### 游泳区域相关接口：
-
-| 接口名   | 描述                             | 作用端 | 参数                          | 返回类型 |
-| -------- | -------------------------------- | ------ | -----------------------------| -------- |
-| `inArea` | 判断当前 Player 是否在游泳区域内 | 调用端 | player: Player（Player 对象） | boolean  |
 
 ## 如何创建游泳区域
 
@@ -38,16 +33,15 @@
 ### 通过脚本动态创建：
 
 ```ts
-@Core.Class
-export default class NewScript extends Core.Script {
+@Component
+export default class NewScript extends Script {
 
     /** 当脚本被实例后，会在第一帧更新前调用此函数 */
     protected onStart(): void {
 
-        let pool = Core.GameObject.spawn({
-            guid:"SwimmingVolume",
+        let pool = GameObject.spawn("SwimmingVolume",{
             replicates:true,
-            transform:new Type.Transform(Type.Vector.zero,Type.Rotation.zero,new Type.Vector(50,50,10))  //设置游泳区域的位置和大小
+            transform:new Transform(Vector.zero,Rotation.zero,new Vector(50,50,10))  //设置游泳区域的位置和大小
         });
     }
 }
@@ -57,15 +51,13 @@ export default class NewScript extends Core.Script {
 
 **创建控制游泳区域的脚本,拖入到对象栏游泳区域下.**
 
-如果是挂在**游泳区域**底下,可能会出现提示：挂载失败,脚本无法挂载到消静态对象上,将游泳区域状态修改为动态即可.
-
 ![](https://cdn.233xyx.com/1681893186983_026.png)
 
 **控制角色上浮下沉，获取角色游泳状态**
 
 ```ts
-@Core.Class
-export default class NewScript extends Core.Script {
+@Component
+export default class NewScript extends Script {
 
     upInterval: number
     downInterval: number
@@ -73,37 +65,30 @@ export default class NewScript extends Core.Script {
     /** 当脚本被实例后，会在第一帧更新前调用此函数 */
     protected onStart(): void {
         if (Util.SystemUtil.isServer()) return;
-        let player = Gameplay.getCurrentPlayer();
-        let pool = this.gameObject as Gameplay.SwimmingVolume;
-
-        // 周期获取角色是否在游泳
-        setInterval(() => {
-            let s = "";
-            s += `角色是否在游泳 ${pool.inArea(player)}\n`;
-            Events.dispatchLocal("status", s);
-        }, 100);
+        let player = Player.localPlayer;
+        let pool = this.gameObject as SwimmingVolume;
 
         // 通过键盘方向键控制角色上浮
-        InputUtil.onKeyPress(Type.Keys.Up, () => {
+        InputUtil.onKeyPress(Keys.Up, () => {
             this.upInterval = setInterval(() => {
                 player.character.swimmingUp(10);
             }, 50);
         });
 
         // 终止上浮
-        InputUtil.onKeyUp(Type.Keys.Up, () => {
+        InputUtil.onKeyUp(Keys.Up, () => {
             clearInterval(this.upInterval);
         });
 
         // 过键盘方向键控制角色下潜
-        InputUtil.onKeyPress(Type.Keys.Down, () => {
+        InputUtil.onKeyPress(Keys.Down, () => {
             this.upInterval = setInterval(() => {
                 player.character.swimmingDown(10);
             }, 50);
         });
 
         // 终止下潜
-        InputUtil.onKeyUp(Type.Keys.Down, () => {
+        InputUtil.onKeyUp(Keys.Down, () => {
             clearInterval(this.downInterval);
         });
     }

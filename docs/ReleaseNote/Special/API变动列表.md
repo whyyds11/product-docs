@@ -679,7 +679,7 @@ let position = a.worldTransform.position；
 | ----------------------- | ---------- | ------------------- | ------------------------------- | ---------- | -------- |
 | forwardVector           | GameObject | GetAccessor         | worldTransform.forwardVector    | GameObject |          |
 | lockStatus              | GameObject | GetAccessor         | -                               |            |          |
-| relativeLocation        | GameObject | GetAccessor         | localTransform.positon          | GameObject |          |
+| relativeLocation        | GameObject | GetAccessor         | localTransform.position          | GameObject |          |
 | relativeRotation        | GameObject | GetAccessor         | localTransform.rotation         | GameObject |          |
 | relativeScale           | GameObject | GetAccessor         | localTransform.scale            | GameObject |          |
 | rightVector             | GameObject | GetAccessor         | worldTransform.rightVector      | GameObject |          |
@@ -688,7 +688,7 @@ let position = a.worldTransform.position；
 | upVector                | GameObject | GetAccessor         | worldTransform.upVector         | GameObject |          |
 | useUpdate               | GameObject | GetAccessor         | -                               |            |          |
 | visible                 | GameObject | GetAccessor         | getVisibility                   | GameObject |          |
-| worldLocation           | GameObject | GetAccessor         | worldTransform.positon          | GameObject |          |
+| worldLocation           | GameObject | GetAccessor         | worldTransform.position          | GameObject |          |
 | worldRotation           | GameObject | GetAccessor         | worldTransform.rotation         | GameObject |          |
 | worldScale              | GameObject | GetAccessor         | worldTransform.scale            | GameObject |          |
 | lockStatus              | GameObject | SetAccessor         | -                               |            | 删除     |
@@ -768,7 +768,7 @@ let position = a.worldTransform.position；
 | getPlayer                     | getPlayer                     | Player              |          |
 | getShootDir                   | -                             |                     |          |
 | getSightBeadLocation          | getSightBeadPosition          | ScreenUtil          |          |
-| isDynamicVibration            | -                             |                     |          |
+| isDynamicVibration            | mw.vibrate                    |                     |          |
 | lineTrace                     | lineTrace                     | QueryUtil           |          |
 | moveTo                        | navigateTo                    | Navigation          |          |
 | parabolicTrace                | -                             |                     |          |

@@ -33,43 +33,43 @@ goList.forEach(element => {
 let childrenObj = this.gameObject.getChildByName("MyChildrenName");
 ```
 
-##### **getChildByGuid(guid: string) : GameObject**
+##### **getChildByGameObjectId(gameObjectId: string) : GameObject**
 
-根据 GUID 获取子物体 ( 物体 GUID )
+根据 GameObjectId 获取子物体 ( 物体 GameObjectId )
 
 ```ts
-let childrenObjByGUID = this.gameObject.getChildByGuid("MyChildrenGUID");
+let childrenObjByGameObjectId = this.gameObject.getChildByGameObjectId("MyChildrenGameObjectId");
 ```
 
 #### **静态函数：**
 
-##### **find(guid: string) : GameObject**
+##### **find(gameObjectId: string) : GameObject**
 
-查找当前物体 ( 物体的 GUID )
+查找当前物体 ( 物体的 GameObjectId )
 
-可查找所有继承自 Core.GameObject 的对象
+可查找所有继承自 GameObject 的对象
 
 ```ts
 //find GameObject
-let goByfind = Core.GameObject.find("GameObjectGUID");
+let goByfind = GameObject.findGameObjectById("GameObjectID");
 
 //find Other Object eg.
-let myTrigger = Core.GameObject.find("TriggerObjGUID") as Gameplay.BoxTrigger;
+let myTrigger = GameObject.findGameObjectById("TriggerObjID") as BoxTrigger;
 ```
 
-##### **asyncFind(guid: string) : Promise`<GameObject>`**
+##### **asyncFindGameObjectById(gameObjectId: string) : Promise`<GameObject>`**
 
-异步查找当前物体 ( 物体的 GUID )
+异步查找当前物体 ( 物体的 GameObjectId )
 
-可查找所有继承自 Core.GameObject 的对象
+可查找所有继承自 GameObject 的对象
 
 ```ts
-@Core.Class
-export default class GetObj extends Core.Script {
+@Component
+export default class GetObj extends Script {
     
     protected async OnStart(): Promise`<void>` {
 
-       let goByAsyfind = await Core.GameObject.asyncFind("GameObjectGUID");
+       let goByAsyfind = await GameObject.asyncFindGameObjectById("GameObjectGameObjectId");
 
     }
     
@@ -78,20 +78,20 @@ export default class GetObj extends Core.Script {
 
 **使用异步加载时，需要 await 修饰符，且将异步修饰符（async）包含至函数**
 
-##### **getGameObjectsByName(name: string) : Array`<GameObject>`**
+##### **findGameObjectsByName(name: string) : Array`<GameObject>`**
 
 通过名字查找所有物体 ( 物体名字 )
 
 ```ts
-@Core.Class
-export default class GetObj extends Core.Script {
+@Component
+export default class GetObj extends Script {
     
     protected OnStart(): void {
 
-       let goListByName = Core.GameObject.getGameObjectsByName("GameObjectsName");
+       let goListByName = GameObject.findGameObjectsByName("GameObjectsName");
        goListByName.forEach(element => {
 
-           console.log(`${this.gameObject.name} | ${element.name} | ${element.guid}`);
+           console.log(`${this.gameObject.name} | ${element.name} | ${element.gameObjectId}`);
 
        });
 
@@ -100,27 +100,27 @@ export default class GetObj extends Core.Script {
 }
 ```
 
-##### **getGameObjectByName(name: string) : GameObject**
+##### **findGameObjectByName(name: string) : GameObject**
 
 通过名字查找物体 ( 物体名字 )
 
 **返回第一个查找到的对象，如有多个同名对象，随机返回一个**
 
 ```ts
-let goByName = Core.GameObject.getGameObjectByName("GameObjectName");
+let goByName = GameObject.findGameObjectByName("GameObjectName");
 ```
 
-##### **findGameObjectByTag(InTag: string) : Array`<GameObject>`**
+##### **findGameObjectsByTag(InTag: string) : Array`<GameObject>`**
 
 通过自定义 Tag 获取 GameObject ( )
 
 ```ts
-@Core.Class
-export default class GetObj extends Core.Script {
+@Component
+export default class GetObj extends Script {
     
     protected OnStart(): void {
 
-       let goListByTag = Core.GameObject.findGameObjectByTag("GameObjectsTag");
+       let goListByTag = GameObject.findGameObjectsByTag("GameObjectsTag");
        goListByTag.forEach(element => {
 
            console.log(`${this.gameObject.name} | ${element.name} | ${element.getTag()}`);
@@ -134,48 +134,48 @@ export default class GetObj extends Core.Script {
 
 ### 1.2 克隆场景中已经存在的对象
 
-##### **Clone() : GameObject**
+##### **clone() : GameObject**
 
 复制对象（返回对象 : GameObject）
 
 ```ts
-let goClone = this.gameObject.Clone();
+let goclone = this.gameObject.clone();
 ```
 
 ### 1.3 在场景中生成资源库内的对象
 
-##### **SpawnGameObject(assetId: string, bInReplicates?: boolean) : GameObject**
+##### **spawn(assetId: string, gameObjectInfo?: mw.GameObjectInfo) : GameObject**
 
-根据 GUID 构造一个 GameObject ( 资源的 GUID , 是否同步 )
+根据 AssetId 构造一个 GameObject ( 资源ID , GameObject信息 )
 
 ```ts
-@Core.Class
-export default class GetObj extends Core.Script {
-
-    @Core.Property()
-    preloadAssets = "AssetID,EffectAssetID";
+@Component
+export default class GetObj extends Script {
 
     /** 当脚本被实例后，会在第一帧更新前调用此函数 */
     protected OnStart(): void {
 
         //Create GameObject
-        let assetGameObject = Core.GameObject.SpawnGameObject("AssetID");
+        let assetGameObject = GameObject.spawn("AssetID");
         
         //Create Other Object eg.
-        let effectObj = Core.GameObject.SpawnGameObject("EffectAssetID") as Gameplay.EffectSystem;
+        let effectObj = GameObject.spawn("EffectAssetID") as Effect;
 
     }
 
 }
 ```
 
-使用**SpawnGameObject**函数时，所需生成的资源 ID 需要 preload
+使用**spawn**函数时，所需生成的资源 ID 需要拖入优先加载栏 或者 使用AssetUtil接口下载加载资源
 
-使用方法如上，在脚本中添加即可
-
-**    @Core.Property()**
-
-**    preloadAssets = "AssetID,EffectAssetID";**
+接口使用方法如下，在脚本中添加即可
+```ts
+AssetUtil.asyncDownloadAsset("").then((flag) => {
+    if(flag) {
+        // your code
+    }
+});
+```
 
 ### [1.4 在场景中生成预制体（Prefab）对象](https://docs.ark.online/Editor/Prefabs.html)
 
@@ -203,12 +203,6 @@ export default class GetObj extends Core.Script {
 
 ## 使用与加载资源时的注意事项
 
-::: tip 通过父节点获取对象只能写在 Server 端，Client 端目前不维护父子节点关系
-
-若逻辑需求一定要在客户端判断父子节点关系，可做成接口在服务端验证
-
-:::
-
 ::: tip 频繁创建、销毁对象时最好做一个对象池管理（例如子弹）
 
 以减少程序内存与执行效率的开销
@@ -217,17 +211,14 @@ export default class GetObj extends Core.Script {
 ::: tip 获取到的所有资源对象在使用前请进行判空处理，防止代码跑火车 
 :::
 
-::: tip 需要动态加载的资源（资源库中的资源），需****要先 preload（预加载），否则会无法创建 
+::: tip 需要动态创建的资源（资源库中的资源），需****要进行优先加载，否则对象的资源无法立即应用
 
-@Core.Property()
-
-preloadAssets = "资源 ID";
 
 **补充：**
 
 方法一：可通过 AssetUtil.asyncDownloadAsset 的方式将资源异步加载到工程中
 
-方法二：可以将需要动态加载的资源拖拽到优先加载中进行标记（原理同 preload）
+方法二：可以将需要动态加载的资源拖拽到优先加载中进行标记
 :::
 
 ::: tip 同步与异步查找对象的使用方式建议（find & asyncFind）

@@ -55,7 +55,7 @@
 
 | 男  | 女 |
 | --------- | ------------ |
-| ![](https://cdn.233xyx.com/1682648299518_667.png) | ![](https://cdn.233xyx.com/1682648299474_769.png) |
+| ![](https://cdn.233xyx.com/athena/online/6e1fc63378da4181a610d3249dbc5592_74082639.webp) | ![](https://cdn.233xyx.com/athena/online/fa9af05a46534161bc7a33ee32c84a55_74082640.webp) |
 
 **1.3.2 编辑项**
 
@@ -64,18 +64,20 @@
   捏人类编辑项，可以通过调整**部位缩放、拉伸**等参数来改变角色形象。
   可以调节的选项有：**头部相关**和**身材相关**。
 
-  ![](https://cdn.233xyx.com/1682648553534_186.png)
+  ![](https://cdn.233xyx.com/athena/online/e0eb3c89709e41dd858cad787c6ff5c0_74074963.webp)
 
-  ![](https://cdn.233xyx.com/1682648553492_831.png)
+  ![](https://cdn.233xyx.com/athena/online/6ff586a51c77448fa1e4ae8d79e98570_74074964.webp)
 
 - **换装类**
 
   换装类编辑项，可以通过**替换资源**、**调整颜色和花纹**等参数来改变角色形象。
-  可以替换的资源有：**发型相关**和**服饰相关**。
+  可以替换的资源有：**化妆相关**、**发型相关**和**服饰相关**。
 
-  ![](https://cdn.233xyx.com/1682648553450_796.png)
+  ![](https://cdn.233xyx.com/athena/online/66a90384dc704ddc81b135700baaa551_74074960.webp)
 
-  ![](https://cdn.233xyx.com/1682648553575_192.png)
+  ![](https://cdn.233xyx.com/athena/online/3c56ccf8ac6d4e8783be0405d190ef2f_74074961.webp)
+  
+  ![](https://cdn.233xyx.com/athena/online/34a6346f916f474abb649b860c0a704c_74074962.webp)
 
 ## 2. 角色编辑工具使用指南
 
@@ -98,12 +100,6 @@
 双击工程内容中的角色形象数据文件，或点击右键菜单中的编辑选项。
 
 ![](https://cdn.233xyx.com/1681892682811_139.png)
-
-**入口4：新建角色形象**
-
-在工程内容的角色列表中，选择新建形象。
-
-![](https://cdn.233xyx.com/1681892682847_714.png)
 
 ### 2.2 角色编辑数据的保存与使用
 

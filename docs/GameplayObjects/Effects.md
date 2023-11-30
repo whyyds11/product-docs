@@ -36,23 +36,23 @@
 - 动态生成特效的示例脚本：
 
 ```ts
-@Core.Class
-export default class NewScript extends Core.Script {
+@Component
+export default class NewScript extends Script {
 
     /** 当脚本被实例后，会在第一帧更新前调用此函数 */
     protected async onStart(): Promise<void> {
         //延迟3秒
         await TimeUtil.delaySecond(3)
         //生成特效
-        let eff = await Gameplay.Particle.asyncSpawn({
+        let eff = await asyncSpawn(
             //特效的GUID
-            guid: "4330",
+            "4330",
             //特效同步设置为false
             replicates: false,
             //特效的生成位置
             transform: new Transform(new Vector(100, 0, 100), new Rotation(0, 0, 0),
                 new Vector(2, 2, 1))
-        }) as Gameplay.Particle
+        }) as Particle
         //播放特效
         eff.play();
         //停止特效
@@ -141,9 +141,9 @@ eff.setFloatRandom("LifeTime",100,10)
 
 ```ts
 //设置特效大小为10
-eff.setVector("Size",new Type.Vector(10,10,10))
+eff.setVector("Size",new Vector(10,10,10))
 //设置特效大小在10到20之间随机取值
-eff.setVectorRandom("Size",new Type.Vector(20,20,20)，new Type.Vector(10,10,10))
+eff.setVectorRandom("Size",new Vector(20,20,20)，new Vector(10,10,10))
 ```
 
 ### 3.6 速度（Speed）
@@ -161,9 +161,9 @@ eff.setVectorRandom("Size",new Type.Vector(20,20,20)，new Type.Vector(10,10,10)
 
 ```ts
 //设置特效在Z轴方向的速度为50
-eff.setVector("Speed",new Type.Vector(0,0,50))
+eff.setVector("Speed",new Vector(0,0,50))
 //设置特效在Z轴方向的速度为在0到50之间随机取值
-eff.setVectorRandom("Speed",new Type.Vector(0,0,50)，new Type.Vector(0,0,0))
+eff.setVectorRandom("Speed",new Vector(0,0,50)，new Vector(0,0,0))
 ```
 
 ### 3.7 发射器位置（EmitterLocation）
@@ -178,9 +178,9 @@ eff.setVectorRandom("Speed",new Type.Vector(0,0,50)，new Type.Vector(0,0,0))
 
 ```ts
 //设置特效的播放位置为（0,0,0）
-eff.setVector("EmitterLocation",new Type.Vector(0,0,0))
+eff.setVector("EmitterLocation",new Vector(0,0,0))
 //设置特效的播放位置在（0,0,0）到（50,50,50）之间随机取值
-eff.setVectorRandom("EmitterLocation",new Type.Vector(50,50,50)，new Type.Vector(0,0,0))
+eff.setVectorRandom("EmitterLocation",new Vector(50,50,50)，new Vector(0,0,0))
 ```
 
 ### 3.8 颜色（InitialColor）
@@ -266,9 +266,9 @@ eff.setFloatRandom("Drag",1,0)
 
 ```ts
 //设置特效在Z轴方向受到的重力为-50
-eff.setVector("Acceleration",new Type.Vector(0,0,-50))
+eff.setVector("Acceleration",new Vector(0,0,-50))
 //设置特效在Z轴方向受到的重力在0到-50之间随机取值
-eff.setVectorRandom("Acceleration",new Type.Vector(0,0,-50)，new Type.Vector(0,0,0))
+eff.setVectorRandom("Acceleration",new Vector(0,0,-50)，new Vector(0,0,0))
 ```
 
 ### 3.13 循环/循环次数（即将废弃）

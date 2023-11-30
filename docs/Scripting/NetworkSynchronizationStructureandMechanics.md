@@ -52,27 +52,7 @@ eg:
 
 ## 网络同步结构
 
-在编辑器中，理解网络同步之前，首先需要理解一个功能 **“静态”**
-
-### 2.1 静态（Static）
-
-![](https://wstatic-a1.233leyuan.com/productdocs/static/boxcnBGCg5MaBgSbDtePxk2tCRe.png)
-
-![](https://wstatic-a1.233leyuan.com/productdocs/static/boxcntPx5dImKvkaJrNjJH8FsDf.png)
-
-> 如上图所示，勾选“**StaticStatus（静态状态）**”即该对象为静态对象，反之则为非静态对象
-
-> 静态对象在游戏研发中经常会遇到，字面意思，它代表当前对象为静止的、不动的
-也就是说，所有被勾选为静态的对象，都是不可动态更改的
-不更改，也就意味着该静态对象只需要在双端进行创建，不需要进行网络同步等操作
-
-eg：
-
-棋类游戏的棋盘不需要进行移动、形变等操作，一般都为静态对象
-
-而棋子则需要进行动态创建、销毁等操作，故棋子一般为非静态对象
-
-### 客户端(C)、服务端(S)、双端(C&S)的区别
+### 2.1 客户端(C)、服务端(S)、双端(C&S)的区别
 
 ![](https://wstatic-a1.233leyuan.com/productdocs/static/boxcnUuKAKDCutnbUnVukbINa2f.png)
 
@@ -143,26 +123,26 @@ protected async onStart(): Promise`<void>` {
     // 客户端执行
     if(SystemUtil.isClient()) {
         //获取当前客户端的玩家对象，方便后续使用
-        let player = await Gameplay.asyncGetCurrentPlayer();
+        let player = Player.LocalPlayer;
 
         // 声明一个变量准备传递到服务端：这里是一个string类型的字符串
-        let message = `你好，我是客户端玩家 ${player.getPlayerID()}`;
+        let message = `你好，我是客户端玩家 ${player.playerId}`;
 
         //从客户端派发消息到服务端：事件.派发到服务端("事件名"，事件内容)；
-        Events.dispatchToServer("ClientToServer", message);
+        Event.dispatchToServer("ClientToServer", message);
 
         //向控制台打印发送行为
-        console.log(`玩家: ${player.getPlayerID()} 向服务端派发了一个事件: ClientToServer, 包含一条消息 : ${message}`);
+        console.log(`玩家: ${player.playerId} 向服务端派发了一个事件: ClientToServer, 包含一条消息 : ${message}`);
 
     }
 
     //服务端执行
     if(SystemUtil.isServer()) {
         //服务端监听从客户端派发的事件：事件.添加客户端监听器("事件名"，(发送事件的客户端玩家，客户端发送的内容))；
-        Events.addClientListener("ClientToServer", (player: Gameplay.Player, message: string) => {
+        Event.addClientListener("ClientToServer", (player: Player, message: string) => {
             
             //向控制台打印监听结果
-            console.log(`服务端监听到 玩家: ${player.getPlayerID()} 派发的事件: ClientToServer, 信息内容是：${message}`);
+            console.log(`服务端监听到 玩家: ${player.playerId} 派发的事件: ClientToServer, 信息内容是：${message}`);
         }); 
     }
 
@@ -179,7 +159,7 @@ protected async onStart(): Promise`<void>` {
 * @param listener 监听回调  Player 发送事件的客户端 target 事件内容
 * @return EventListener
 */
-function AddClientListener(eventName: string, listener: (player: Gameplay.Player, ...params: unknown[]) => void): EventListener;
+function AddClientListener(eventName: string, listener: (player: Player, ...params: unknown[]) => void): EventListener;
 ```
 ```ts
 /** 当脚本被实例后，会在第一帧更新前调用此函数 */
@@ -188,26 +168,26 @@ protected async onStart(): Promise`<void>` {
     // 客户端执行
     if(SystemUtil.isClient()) {
         //获取当前客户端的玩家对象，方便后续使用
-        let player = await Gameplay.asyncGetCurrentPlayer();
+        let player = Player.localPlayer;
 
         // 声明一个变量准备传递到服务端：这里是一个string类型的字符串
-        let message = `你好，我是客户端玩家 ${player.getPlayerID()}`;
+        let message = `你好，我是客户端玩家 ${player.playerId}`;
 
         //从客户端派发消息到服务端：事件.派发到服务端("事件名"，事件内容)；
-        Events.dispatchToServer("ClientToServer", message);
+        Event.dispatchToServer("ClientToServer", message);
 
         //向控制台打印发送行为
-        console.log(`玩家: ${player.getPlayerID()} 向服务端派发了一个事件: ClientToServer, 包含一条消息 : ${message}`);
+        console.log(`玩家: ${player.playerId} 向服务端派发了一个事件: ClientToServer, 包含一条消息 : ${message}`);
 
     }
 
     //服务端执行
     if(SystemUtil.isServer()) {
         //服务端监听从客户端派发的事件：事件.添加客户端监听器("事件名"，(发送事件的客户端玩家，客户端发送的内容))；
-        Events.addClientListener("ClientToServer", (player: Gameplay.Player, message: string) => {
+        Event.addClientListener("ClientToServer", (player: Player, message: string) => {
             
             //向控制台打印监听结果
-            console.log(`服务端监听到 玩家: ${player.getPlayerID()} 派发的事件: ClientToServer, 信息内容是：${message}`);
+            console.log(`服务端监听到 玩家: ${player.playerId} 派发的事件: ClientToServer, 信息内容是：${message}`);
         }); 
     }
 
@@ -225,7 +205,7 @@ protected async onStart(): Promise`<void>` {
 * @param eventName 事件名
 * @param params 事件内容
 */
-function dispatchToClient(player: Gameplay.Player, eventName: string, ...params: unknown[]): DispatchEventResult;
+function dispatchToClient(player: Player, eventName: string, ...params: unknown[]): DispatchEventResult;
 ```
 ```ts
 /** 当脚本被实例后，会在第一帧更新前调用此函数 */
@@ -234,22 +214,22 @@ protected async onStart(): Promise`<void>` {
     // 客户端执行
     if(SystemUtil.isClient()) {
         //获取当前客户端的玩家对象，方便后续使用
-        let player = await Gameplay.asyncGetCurrentPlayer();
+        let player = Player.localPlayer;
 
         // 声明一个变量准备传递到服务端：这里是一个string类型的字符串
-        let message = `你好，我是客户端玩家 ${player.getPlayerID()}`;
+        let message = `你好，我是客户端玩家 ${player.playerId}`;
 
         //从客户端派发消息到服务端：事件.派发到服务端("事件名"，事件内容)；
-        Events.dispatchToServer("ClientToServer", message);
+        Event.dispatchToServer("ClientToServer", message);
 
         //向控制台打印发送行为
-        console.log(`玩家: ${player.getPlayerID()} 向服务端派发了一个事件: ClientToServer, 内容为 : ${message}`);
+        console.log(`玩家: ${player.playerId} 向服务端派发了一个事件: ClientToServer, 内容为 : ${message}`);
 
          //客户端监听从服务端派发的事件：事件.添加服务端事件监听器("事件名"，(服务端发送的内容))；
-         Events.addServerListener("ServerToClient", (reply: string) => {
+         Event.addServerListener("ServerToClient", (reply: string) => {
             
             //向控制台打印监听结果
-            console.log(`玩家: ${player.getPlayerID()} 客户端监听到服务端派发的事件: ServerToClient, 信息内容是：${reply}`);
+            console.log(`玩家: ${player.playerId} 客户端监听到服务端派发的事件: ServerToClient, 信息内容是：${reply}`);
 
         }); 
     }
@@ -257,19 +237,19 @@ protected async onStart(): Promise`<void>` {
     //服务端执行
     if(SystemUtil.isServer()) {
         //服务端监听从客户端派发的事件：事件.添加客户端事件监听器("事件名"，(发送事件的客户端玩家，客户端发送的内容))；
-        Events.addClientListener("ClientToServer", (player: Gameplay.Player, message: string) => {
+        Event.addClientListener("ClientToServer", (player: Player, message: string) => {
             
             //向控制台打印监听结果
-            console.log(`服务端监听到 玩家 ${player.getPlayerID()} 派发的事件: ClientToServer, 内容是：${message}`);
+            console.log(`服务端监听到 玩家 ${player.playerId} 派发的事件: ClientToServer, 内容是：${message}`);
 
              // 声明一个变量准备传递到客户端：这里是一个string类型的字符串
-            let reply = `你好，我是服务端，已收到客户端玩家 ${player.getPlayerID()} 发来的消息`;
+            let reply = `你好，我是服务端，已收到客户端玩家 ${player.playerId} 发来的消息`;
             
             //从服务端派发消息到指定的客户端：事件.派发到服务端(指定的客户端, "事件名"，事件内容)；
-            Events.dispatchToClient(player, "ServerToClient", reply);
+            Event.dispatchToClient(player, "ServerToClient", reply);
 
              //向控制台打印发送行为
-            console.log(`服务端向玩家 ${player.getPlayerID()} 派发了一个事件: ServerToClient, 内容为 : ${reply}`);
+            console.log(`服务端向玩家 ${player.playerId} 派发了一个事件: ServerToClient, 内容为 : ${reply}`);
 
         }); 
     }
@@ -286,7 +266,7 @@ protected async onStart(): Promise`<void>` {
 * @param eventName 事件名
 * @param params 事件内容
 */
-function dispatchToAllClient(player: Gameplay.Player, eventName: string, ...params: unknown[]): DispatchEventResult;
+function dispatchToAllClient(player: Player, eventName: string, ...params: unknown[]): DispatchEventResult;
 ```
 ```ts
 /** 当脚本被实例后，会在第一帧更新前调用此函数 */
@@ -295,26 +275,26 @@ protected async onStart(): Promise`<void>` {
     // 客户端执行
     if(SystemUtil.isClient()) {
         //获取当前客户端的玩家对象，方便后续使用
-        let player = await Gameplay.asyncGetCurrentPlayer();
+        let player = Player.localPlayer;
 
         // 声明一个变量准备传递到服务端：这里是一个string类型的字符串
-        let message = `你好，我是客户端玩家 ${player.getPlayerID()}`;
+        let message = `你好，我是客户端玩家 ${player.playerId}`;
 
         // 按下键盘G键
-        InputUtil.onKeyDown(Type.Keys.G, () => {
+        InputUtil.onKeyDown(Keys.G, () => {
             //从客户端派发消息到服务端：事件.派发到服务端("事件名"，事件内容)；
-            Events.dispatchToServer("ClientToServer", message);
+            Event.dispatchToServer("ClientToServer", message);
 
             //向控制台打印发送行为
-            console.log(`玩家: ${player.getPlayerID()} 向服务端派发了一个事件: ClientToServer, 内容为 : ${message}`);
+            console.log(`玩家: ${player.playerId} 向服务端派发了一个事件: ClientToServer, 内容为 : ${message}`);
         });
        
 
          //客户端监听从服务端派发的事件：事件.添加服务端事件监听器("事件名"，(服务端发送的内容))；
-         Events.addServerListener("ServerToAllClient", (reply: string) => {
+         Event.addServerListener("ServerToAllClient", (reply: string) => {
             
             //向控制台打印监听结果
-            console.log(`玩家: ${player.getPlayerID()} 客户端监听到服务端派发的事件: ServerToAllClient, 信息内容是：${reply}`);
+            console.log(`玩家: ${player.playerId} 客户端监听到服务端派发的事件: ServerToAllClient, 信息内容是：${reply}`);
 
         }); 
     }
@@ -322,16 +302,16 @@ protected async onStart(): Promise`<void>` {
     //服务端执行
     if(SystemUtil.isServer()) {
         //服务端监听从客户端派发的事件：事件.添加客户端事件监听器("事件名"，(发送事件的客户端玩家，客户端发送的内容))；
-        Events.addClientListener("ClientToServer", (player: Gameplay.Player, message: string) => {
+        Event.addClientListener("ClientToServer", (player: Player, message: string) => {
             
             //向控制台打印监听结果
-            console.log(`服务端监听到 玩家 ${player.getPlayerID()} 派发的事件: ClientToServer, 内容是：${message}`);
+            console.log(`服务端监听到 玩家 ${player.playerId} 派发的事件: ClientToServer, 内容是：${message}`);
 
              // 声明一个变量准备传递到客户端：这里是一个string类型的字符串
-            let reply = `你好，我是服务端，已收到客户端玩家 ${player.getPlayerID()} 发来的消息`;
+            let reply = `你好，我是服务端，已收到客户端玩家 ${player.playerId} 发来的消息`;
             
             //从服务端派发消息到所有客户端：事件.派发到服务端("事件名"，事件内容)；
-            Events.dispatchToAllClient("ServerToAllClient", reply);
+            Event.dispatchToAllClient("ServerToAllClient", reply);
 
              //向控制台打印发送行为
             console.log(`服务端向所有客户端派发了一个事件: ServerToAllClient, 内容为 : ${reply}`);
@@ -361,26 +341,26 @@ protected async onStart(): Promise`<void>` {
     // 客户端执行
     if(SystemUtil.isClient()) {
         //获取当前客户端的玩家对象，方便后续使用
-        let player = await Gameplay.asyncGetCurrentPlayer();
+        let player = Player.localPlayer;
 
         // 声明一个变量准备传递到服务端：这里是一个string类型的字符串
-        let message = `你好，我是客户端玩家 ${player.getPlayerID()}`;
+        let message = `你好，我是客户端玩家 ${player.playerId}`;
 
         // 按下键盘G键
-        InputUtil.onKeyDown(Type.Keys.G, () => {
+        InputUtil.onKeyDown(Keys.G, () => {
             //从客户端派发消息到服务端：事件.派发到服务端("事件名"，事件内容)；
-            Events.dispatchToServer("ClientToServer", message);
+            Event.dispatchToServer("ClientToServer", message);
 
             //向控制台打印发送行为
-            console.log(`玩家: ${player.getPlayerID()} 向服务端派发了一个事件: ClientToServer, 内容为 : ${message}`);
+            console.log(`玩家: ${player.playerId} 向服务端派发了一个事件: ClientToServer, 内容为 : ${message}`);
         });
        
 
          //客户端监听从服务端派发的事件：事件.添加服务端事件监听器("事件名"，(服务端发送的内容))；
-         Events.addServerListener("ServerToAllClient", (reply: string) => {
+         Event.addServerListener("ServerToAllClient", (reply: string) => {
             
             //向控制台打印监听结果
-            console.log(`玩家: ${player.getPlayerID()} 客户端监听到服务端派发的事件: ServerToAllClient, 信息内容是：${reply}`);
+            console.log(`玩家: ${player.playerId} 客户端监听到服务端派发的事件: ServerToAllClient, 信息内容是：${reply}`);
 
         }); 
     }
@@ -388,16 +368,16 @@ protected async onStart(): Promise`<void>` {
     //服务端执行
     if(SystemUtil.isServer()) {
         //服务端监听从客户端派发的事件：事件.添加客户端事件监听器("事件名"，(发送事件的客户端玩家，客户端发送的内容))；
-        Events.addClientListener("ClientToServer", (player: Gameplay.Player, message: string) => {
+        Event.addClientListener("ClientToServer", (player: Player, message: string) => {
             
             //向控制台打印监听结果
-            console.log(`服务端监听到 玩家 ${player.getPlayerID()} 派发的事件: ClientToServer, 内容是：${message}`);
+            console.log(`服务端监听到 玩家 ${player.playerId} 派发的事件: ClientToServer, 内容是：${message}`);
 
              // 声明一个变量准备传递到客户端：这里是一个string类型的字符串
-            let reply = `你好，我是服务端，已收到客户端玩家 ${player.getPlayerID()} 发来的消息`;
+            let reply = `你好，我是服务端，已收到客户端玩家 ${player.playerId} 发来的消息`;
             
             //从服务端派发消息到所有客户端：事件.派发到服务端("事件名"，事件内容)；
-            Events.dispatchToAllClient("ServerToAllClient", reply);
+            Event.dispatchToAllClient("ServerToAllClient", reply);
 
              //向控制台打印发送行为
             console.log(`服务端向所有客户端派发了一个事件: ServerToAllClient, 内容为 : ${reply}`);
@@ -415,10 +395,10 @@ protected async onStart(): Promise`<void>` {
 eg：
 
 ```ts
-@Core.Class
-export default class NewScript0 extends Core.Script {
+@Component
+export default class NewScript0 extends Script {
 
-    @Core.Property({replicated: true, onChanged: "onChanged"})
+    @Property({replicated: true, onChanged: "onChanged"})
     testNumber: number = 10; 
 
     onChanged(): void{
@@ -431,15 +411,15 @@ export default class NewScript0 extends Core.Script {
         // 客户端执行
         if(SystemUtil.isClient()) {
             //获取当前客户端的玩家对象，方便后续使用
-            let player = await Gameplay.asyncGetCurrentPlayer();
+            let player = Player.localPlayer;
 
             // 按下键盘G键
-            InputUtil.onKeyDown(Type.Keys.G, () => {
+            InputUtil.onKeyDown(Keys.G, () => {
                 //从客户端派发消息到服务端：事件.派发到服务端("事件名"，事件内容)；
-                Events.dispatchToServer("addTestNumber");
+                Event.dispatchToServer("addTestNumber");
 
                 //向控制台打印发送行为
-                console.log(`玩家: ${player.getPlayerID()} 向服务端派发了一个事件: addTestNumber`);
+                console.log(`玩家: ${player.playerId} 向服务端派发了一个事件: addTestNumber`);
             });
         
         }
@@ -450,10 +430,10 @@ export default class NewScript0 extends Core.Script {
             console.log(`testNumber的初始值为 ${this.testNumber}`);
 
             //服务端监听从客户端派发的事件：事件.添加客户端事件监听器("事件名"，(发送事件的客户端玩家))；
-            Events.addClientListener("addTestNumber", (player: Gameplay.Player) => {
+            Event.addClientListener("addTestNumber", (player: Player) => {
                 
                 //向控制台打印监听结果
-                console.log(`服务端监听到 玩家 ${player.getPlayerID()} 派发的事件: addTestNumber, 服务端将testNumber加1`);
+                console.log(`服务端监听到 玩家 ${player.playerId} 派发的事件: addTestNumber, 服务端将testNumber加1`);
 
                 this.testNumber += 1;
 
@@ -482,7 +462,7 @@ export default class NewScript0 extends Core.Script {
 
 #### 注意事项：
 
-- 使用类必须使用 Class 或 GameObject 注解标注
+- 使用类必须使用 Component 或 GameObject 注解标注
 - 必须派生自 Script 或 GameObject 类型
 - 使用 Property 注解对需要同步属性标注
 - 注册属性同步回调函数

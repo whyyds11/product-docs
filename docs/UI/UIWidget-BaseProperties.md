@@ -184,7 +184,7 @@ this.uiObject.zOrder=0
 
 ```ts
 //找到对应的按钮
-let btn = this.uiWidgetBase.findChildByPath('Canvas/btn') as UI.Button
+let btn = this.uiWidgetBase.findChildByPath('Canvas/btn') as Button
 ```
 
 ### 可用性
@@ -300,8 +300,8 @@ let btn = this.uiWidgetBase.findChildByPath('Canvas/btn') as UI.Button
   
   - 例如调整Root的渲染透明度，就是此UI文件整体的渲染透明度
     ![](https://cdn.233xyx.com/1681458030118_551.gif)
-  - 除了属性面板，还可以在脚本中找到UI.UIBehavior.uiWidgetBase或UIObject.uiWidgetBase来找到对应的UI对象的Root节点，进而调整UI对象的整体属性，uiWidgetBase与属性面板中的Root完全对应
-  - UI文件还可以作为自定义UI控件（即UI.UserWidget），在UI编辑器拖拽到其他UI文件里或者在脚本中动态添加到其他UI对象中，UI文件内root的变换/对齐/通用/渲染这四个分组的属性会自动应用到新建的自定义UI控件；**也就是说只需要修改一次UI文件root的属性，不需要每次创建自定义UI都设置一次**
+  - 除了属性面板，还可以在脚本中找到UIScript.uiWidgetBase或UIObject.uiWidgetBase来找到对应的UI对象的Root节点，进而调整UI对象的整体属性，uiWidgetBase与属性面板中的Root完全对应
+  - UI文件还可以作为自定义UI控件（即UserWidget），在UI编辑器拖拽到其他UI文件里或者在脚本中动态添加到其他UI对象中，UI文件内root的变换/对齐/通用/渲染这四个分组的属性会自动应用到新建的自定义UI控件；**也就是说只需要修改一次UI文件root的属性，不需要每次创建自定义UI都设置一次**
     ![](https://cdn.233xyx.com/athena/online/17068f7ebe604db6836835f1e394c538_11631157.webp)
 - 下面，我们来单独介绍一下Root对齐属性的用法，这部分较难理解，也比较容易出问题：
   
@@ -328,26 +328,28 @@ let btn = this.uiWidgetBase.findChildByPath('Canvas/btn') as UI.Button
 :::
 
 - 除了可以在编辑器拖拽完成绑定，还有两种在脚本中将UI脚本与UI对象绑定的用法：
-- **1.使用UICallOnly装饰器**
-  - 首先，在UI脚本中使用UICallOnly装饰器，标记UI脚本归属于哪个UI文件
-  - 然后，在另一个普通脚本/UI脚本中使用UI.UIManager.instance.show运行此UI脚本，此UI文件也会作为UI对象添加到游戏画面
+- **1.使用UIBind装饰器**
+  - 首先，在UI脚本中使用UIBind装饰器，标记UI脚本归属于哪个UI文件
+  - 然后，在另一个普通脚本/UI脚本中使用UIService.show运行此UI脚本，此UI文件也会作为UI对象添加到游戏画面
 
 ```TypeScript
-@UI.UICallOnly('DefaultUI.ui')
- export default class UIDefault extends DefaultUI_generate {
+import NewUI_generate from "./ui-generate/NewUI_generate";
+
+@UIBind('NewUI.ui')
+ export default class NewUI extends NewUI_generate {
      protected onStart() {
      }
  }
 ```
 
 ```TypeScript
-import DefaultUI from "./DefaultUI"
-@Core.Class
-export default class NewScript extends Core.Script {
+import NewUI from "./NewUIScript"
+@Component
+export default class NewScript extends Script {
 
     /** 当脚本被实例后，会在第一帧更新前调用此函数 */
     protected onStart(): void {
-        UI.UIManager.instance.show(DefaultUI)
+        UIService.show(NewUI)
     }
 }
 ```
@@ -358,20 +360,21 @@ export default class NewScript extends Core.Script {
 使用show函数将此UI脚本添加到游戏画面中，也就是将UI文件作为UI对象添加到游戏画面
 :::
 
-* **2.使用UI.createUI创建UI并且同时完成绑定**
+* **2.使用createUI创建UI并且同时完成绑定**
 
-- 在普通脚本/UI脚本中都可以使用UI.createUI创建UI并同时完成绑定，然后使用addToViewport添加到画面，这种方法不需要使用UICallOnly装饰器
+- 在普通脚本/UI脚本中都可以使用createUI创建UI并同时完成绑定，然后使用addToViewport添加到画面，这种方法不需要使用UIBind装饰器
 
-- 注意：使用UI.createUI时，参数中的UI脚本和UI文件绑定优先级最高，如果createUI参数中的UI脚本中用@UI.UICallOnly绑定了其他UI文件，其他UI文件会被覆盖；如果createUI参数中的UI文件挂载了其他UI脚本，其他UI脚本也会被覆盖
+- 注意：使用createUI时，参数中的UI脚本和UI文件绑定优先级最高，如果createUI参数中的UI脚本中用UIBind装饰器绑定了其他UI文件，其他UI文件会被覆盖；如果createUI参数中的UI文件挂载了其他UI脚本，其他UI脚本也会被覆盖
 
 
 ```TypeScript
-@Core.Class
- export default class NewScript extends Core.Script {
+import NewUI from "./NewUIScript"
+@Component
+ export default class NewScript extends Script {
 
      /** 当脚本被实例后，会在第一帧更新前调用此函数 */
      protected onStart(): void {
-         let newui=UI.createUI('DefaultUI.ui',DefaultUI) as UI.UIBehavior
+         let newui=createUI('NewUI.ui',NewUI) as UIScript
          newui.uiWidgetBase.addToViewport(0)
      }
  }

@@ -32,25 +32,24 @@
 - 首先我们将触发器对象放置在场景中，然后绑定以下脚本即可实现一个沙漠的环境区域。
 
 ```ts
-@Core.Class
-export default class NewScript extends Core.Script {
+@Component
+export default class NewScript extends Script {
 
-    fog: Gameplay.ExponentialHeightFog
+    fog: Fog
 
     /** 当脚本被实例后，会在第一帧更新前调用此函数 */
     protected async onStart(): Promise<void> {
-        //通过对象ID找到环境雾对象
-        this.fog = await Core.GameObject.asyncFind("22F16EC4") as Gameplay.ExponentialHeightFog
+       
         //声明触发器
-        let trigger = this.gameObject as Gameplay.Trigger;
+        let trigger = this.gameObject as Trigger;
 
         //角色进入触发器时，环境雾开启，并设置为沙漠雾
         trigger.onEnter.add(() => {
 
             //开启环境雾
-            this.fog.fogEnable = true;
+            Fog.enabled = true;
             //环境雾预设：沙漠雾
-            this.fog.setPresetByIndex(4)
+            Fog.setPreset(4)
 
         });
 
@@ -58,7 +57,7 @@ export default class NewScript extends Core.Script {
         trigger.onLeave.add(() => {
 
             //关闭环境雾
-            this.fog.fogEnable = false;
+            Fog.enabled = false;
 
         });
 
@@ -87,17 +86,11 @@ export default class NewScript extends Core.Script {
 - 首先我们添加几个UI按钮，方便我们切换环境雾预设，当然可以通过其他的机制进行切换。然后编写UI脚本。
 
 ```ts
-@UI.UICallOnly('')
-export default class UIDefault extends UI.UIBehavior {
-    Character: Gameplay.Character;
+export default class NewUIScript extends UIScript {
 
     /** 仅在游戏时间对非模板实例调用一次 */
     protected onStart() {
-        //设置能否每帧触发onUpdate
-        this.canUpdate = false;
 
-        //找到对应的跳跃按钮
-        const JumpBtn = this.uiWidgetBase.findChildByPath('MWCanvas/MWButton_Jump') as UI.StaleButton
         //找到对应的预设1按钮
         const Preset1Btn = this.uiWidgetBase.findChildByPath('MWCanvas/Button_11') as UI.Button
         //找到对应的预设2按钮
@@ -109,42 +102,29 @@ export default class UIDefault extends UI.UIBehavior {
         //找到对应的预设5按钮
         const Preset5Btn = this.uiWidgetBase.findChildByPath('MWCanvas/Button_15') as UI.Button
 
-        //点击跳跃按钮,异步获取人物后执行跳跃
-        JumpBtn.onPressed.add(() => {
-            if (this.Character) {
-                this.Character.jump();
-            } else {
-                Gameplay.asyncGetCurrentPlayer().then((player) => {
-                    this.Character = player.character;
-                    //角色执行跳跃功能
-                    this.Character.jump();
-                });
-            }
-        })
-
         //点击按钮，发送预设事件
         Preset1Btn.onPressed.add(() => {
-            Events.dispatchLocal("Preset1");
+            Event.dispatchToLocal("Preset1");
         });
 
         //点击按钮，发送预设事件
         Preset2Btn.onPressed.add(() => {
-            Events.dispatchLocal("Preset2");
+            Event.dispatchToLocal("Preset2");
         });
 
         //点击按钮，发送预设事件
         Preset3Btn.onPressed.add(() => {
-            Events.dispatchLocal("Preset3");
+            Event.dispatchToLocal("Preset3");
         });
 
         //点击按钮，发送预设事件
         Preset4Btn.onPressed.add(() => {
-            Events.dispatchLocal("Preset4");
+            Event.dispatchToLocal("Preset4");
         });
 
         //点击按钮，发送预设事件
         Preset5Btn.onPressed.add(() => {
-            Events.dispatchLocal("Preset5");
+            Event.dispatchToLocal("Preset5");
         });
 
     }
@@ -155,41 +135,41 @@ export default class UIDefault extends UI.UIBehavior {
 - 然后我们编写接受事件的脚本。
 
 ```ts
-@Core.Class
-export default class NewScript extends Core.Script {
+@Component
+export default class NewScript extends Script {
 
-    fog:Gameplay.ExponentialHeightFog
+    fog:Fog
 
     /** 当脚本被实例后，会在第一帧更新前调用此函数 */
     protected async onStart(): Promise<void> {
 
-        this.fog = await Core.GameObject.asyncFind("22F16EC4") as Gameplay.ExponentialHeightFog
+        this.fog = await GameObject.asyncFindGameObjectById("22F16EC4") as Fog
 
         Events.addLocalListener("Preset1", () => {
             //环境雾预设：默认
-            this.fog.setPresetByIndex(0)
+            Fog.setPreset(0)
         });
 
         Events.addLocalListener("Preset2", () => {
             //环境雾预设：近景雾
-            this.fog.setPresetByIndex(1)
+            Fog.setPreset(1)
 
         });
 
         Events.addLocalListener("Preset3", () => {
             //环境雾预设：远景雾
-            this.fog.setPresetByIndex(2)
+            Fog.setPreset(2)
         });
 
         Events.addLocalListener("Preset4", () => {
             //环境雾预设：地下雾
-            this.fog.setPresetByIndex(3)
+            Fog.setPreset(3)
 
         });
 
         Events.addLocalListener("Preset5", () => {
             //环境雾预设：沙漠雾
-            this.fog.setPresetByIndex(4)
+            Fog.setPreset(4)
         });
 
     }
@@ -212,7 +192,7 @@ export default class NewScript extends Core.Script {
 
 ```ts
 //设置环境雾密度
-this.fog.fogDensity = 1;
+Fog.density = 1;
 ```
 
 ### 雾高度
@@ -226,7 +206,7 @@ this.fog.fogDensity = 1;
 
 ```ts
 //设置环境雾高度
-this.fog.fogHeight = 5000;
+Fog.height = 5000;
 ```
 
 ### 雾高度衰弱
@@ -240,7 +220,7 @@ this.fog.fogHeight = 5000;
 
 ```ts
 //设置环境雾高度衰弱
-this.fog.fogHeightFalloff = 0.7;
+Fog.heightFalloff = 0.7;
 ```
 
 ### 雾散射颜色
@@ -254,7 +234,7 @@ this.fog.fogHeightFalloff = 0.7;
 
 ```ts
 //设置环境雾颜色
-this.fog.fogInscatteringColor = new Type.LinearColor(255, 0, 0);
+Fog.inscatteringColor = new LinearColor(255, 0, 0);
 ```
 
 ### 雾最大透明度
@@ -268,7 +248,7 @@ this.fog.fogInscatteringColor = new Type.LinearColor(255, 0, 0);
 
 ```ts
 //设置环境雾透明度
-this.fog.fogMaxOpacity = 0.5;
+Fog.maxOpacity = 0.5;
 ```
 
 ### 起始距离
@@ -282,7 +262,7 @@ this.fog.fogMaxOpacity = 0.5;
 
 ```ts
 //环境雾初始距离
-this.fog.startDistance = 1000;
+Fog.startDistance = 1000;
 ```
 
 ### 太阳光散射颜色
@@ -296,7 +276,7 @@ this.fog.startDistance = 1000;
 
 ```ts
 //太阳光散色颜色
-this.fog.directionalInscatteringColor = new Type.LinearColor(0, 137, 60);
+Fog.directionalInscatteringColor = new LinearColor(0, 137, 60);
 ```
 
 ### 太阳光散射指数
@@ -310,7 +290,7 @@ this.fog.directionalInscatteringColor = new Type.LinearColor(0, 137, 60);
 
 ```ts
 //设置太阳光散色指数
-this.fog.directionalInscatteringExponent = 20;
+Fog.directionalInscatteringExponent = 20;
 ```
 
 ### 太阳光散射起始距离
@@ -324,7 +304,7 @@ this.fog.directionalInscatteringExponent = 20;
 
 ```ts
 //设置太阳光散色距离
-this.fog.directionalInscatteringStartDistance = 20000;
+Fog.directionalInscatteringStartDistance = 20000;
 ```
 
 ## 如何使用环境雾？
