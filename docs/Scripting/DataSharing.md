@@ -6,7 +6,7 @@
 
 ## 共享数据概述
 
-根据【[数据存储](https://meta.feishu.cn/wiki/wikcnl49v1cFFHKGwNaL6rSEMVg) 】的文档内容，我们了解到了如何通过编辑器提供的 API 将游戏数据存储下来，当我们将游戏数据存储为**永久数据**后，就可以使用 API 将数据存储到我们的开发者平台上。然后我们可以通过开发者平台控制这份数据的读取权限，这样我们就可以将这份数据共享给其他游戏，完成让多款游戏共用一份游戏数据。
+根据【[数据存储](https://docs-027.ark.online/Scripting/DataStorage.html) 】的文档内容，我们了解到了如何通过编辑器提供的 API 将游戏数据存储下来，当我们将游戏数据存储为**永久数据**后，就可以使用 API 将数据存储到我们的开发者平台上。然后我们可以通过开发者平台控制这份数据的读取权限，这样我们就可以将这份数据共享给其他游戏，完成让多款游戏共用一份游戏数据。
 
 ## 共享数据的步骤
 
@@ -42,19 +42,19 @@ let data3 = await DataStorage.asyncGetData("coin");
 
 - 我们在发布完游戏，并通过审核后，打开开发者平台，找到存档管理列表。
 
-![](https://wstatic-a1.233leyuan.com/productdocs/static/boxcnTlNSqwT4chVzV0pCdAjOFh.png)
+![](https://cdn.233xyx.com/online/3mvTYGh0N4UQ1700044191839.png)
 
 - 然后选择我们的游戏名，定位我们所要找的游戏存档。
 
-![](https://wstatic-a1.233leyuan.com/productdocs/static/boxcnHpVNAyHu9EAxMRRL9fvB4c.png)
+![](https://cdn.233xyx.com/online/ZcsAg16P59x91700044191840.png)
 
 - 接下来数据类型选择自定义。
 
-![](https://wstatic-a1.233leyuan.com/productdocs/static/boxcnP0gTVAgSPf9onxMY7091xd.png)
+![](https://cdn.233xyx.com/online/u1JmDo96FQbo1700044191840.png)
 
 - 最后根据 key 进行搜索，或直接点击搜索按钮，就可以看到我们游戏中存储的所有的数据啦！
 
-![](https://wstatic-a1.233leyuan.com/productdocs/static/boxcnDi0RyxBzoJkRPBXNg9PFMb.png)
+![](https://cdn.233xyx.com/online/QQO1ik0rY5VO1700044191840.png)
 
 - 注意：平台上的游戏数据需要等实际游戏的运行后，即执行了数据存储的游戏逻辑后，开发者平台上面才会存在相应的数据。
 
@@ -62,7 +62,7 @@ let data3 = await DataStorage.asyncGetData("coin");
 
 - 找到授权管理按钮，并点击打开游戏授权的管理界面。
 
-![](https://wstatic-a1.233leyuan.com/productdocs/static/boxcnK6q9I67GPYgrzFipQMkCWh.png)
+![](https://cdn.233xyx.com/online/mLt5QVTJpihN1700044191840.png)
 
 - 点击添加按钮，添加授权游戏。
 
@@ -71,7 +71,7 @@ let data3 = await DataStorage.asyncGetData("coin");
   - 授权游戏：被授权的游戏，可以填写 gameid 指定某些游戏
   - 状态：开启授权或关闭授权
 
-![](https://wstatic-a1.233leyuan.com/productdocs/static/boxcnw91nIKk7sVs30sbSUf0sdc.png)
+![](https://cdn.233xyx.com/online/Nk8xQwaJ6haQ1700044191840.png)
 
 ##### 2.4 其他游戏读取并修改共享数据
 
