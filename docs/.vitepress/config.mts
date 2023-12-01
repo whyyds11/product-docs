@@ -158,8 +158,7 @@ export default defineConfigWithTheme<DefaultTheme.Config>({
         collapsible: true,
         collapsed: true,
         items: [
-          { text: '环境光', link: '/WorldObjects/AmbientLight.md' },
-          { text: '太阳光', link: '/WorldObjects/Sunlight.md' },
+          { text: '光照系统', link: '/WorldObjects/Lighting.md' },
           { text: '摄像机', link: '/WorldObjects/Camera.md' },
           { text: '后处理', link: '/WorldObjects/Post-Processing.md' },
           { text: '天空球', link: '/WorldObjects/Skybox.md' },

@@ -140,8 +140,8 @@ Skybox.skyDomeBaseColor = new LinearColor(255,0,0)
 
 ![](https://cdn.233xyx.com/1682503517307_065.png)
 
-开启渐变效果时，开发者可对天空球顶层、上层和下层进行编辑。顶层、上层、下层的颜色将会与天空球整体颜色进行乘法。
-- 是否开启渐变效果：勾选后，渐变效果生效；若不勾选，开发者所选的天空球顶层/上层/下层颜色均不会生效。
+开启渐变效果时，开发者可对天空球顶层、上层和下层进行编辑。顶层、中层、下层的颜色将会与天空球整体颜色进行乘法。
+- 是否开启渐变效果：勾选后，渐变效果生效；若不勾选，开发者所选的天空球顶层/中层/下层颜色均不会生效。
 - 相关接口：
 
 ```ts
@@ -161,13 +161,13 @@ Skybox.skyDomeGradientEnabled = false;
 Skybox.skyDomeTopColor = new LinearColor(255,0,0);
 ```
 
-#### 天空球上层颜色
+#### 天空球中层颜色
 
-- 天空球上层颜色：天空球的50-64%部分，若开启渐变效果，将与天空球整体色调进行乘法。
+- 天空球中层颜色：天空球的50-64%部分，若开启渐变效果，将与天空球整体色调进行乘法。
 - 相关接口：
 
 ```ts
-//设置天空球上层颜色
+//设置天空球中层颜色
 Skybox.skyDomeMiddleColor = new LinearColor(255,0,0);
 ```
 
@@ -186,11 +186,11 @@ Skybox.skyDomeBottomColor = new LinearColor(255,0,0);
 - 地平线渐出：影响地平线的渐变宽度，范围为1-20。此值越小，两相邻部分之间的颜色交替部分越宽；此值越大，两相邻部分之间的颜色交替部分越窄。
 - 效果图：
 
-地平线渐出值为 1 时，上层（红）和下层（黄）的交替效果
+地平线渐出值为 1 时，中层（红）和下层（黄）的交替效果
 
 ![](https://wstatic-a1.233leyuan.com/productdocs/static/boxcnpJJbwok3KVMs2RwP5Hs3sf.png)
 
-地平线渐出值为 20 时，上层（红）和下层（黄）的交替效果
+地平线渐出值为 20 时，中层（红）和下层（黄）的交替效果
 
 ![](https://wstatic-a1.233leyuan.com/productdocs/static/boxcn0txNcUVwMR1vwos89lgqde.png)
 
