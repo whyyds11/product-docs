@@ -186,7 +186,7 @@ export default class NewScript extends Script {
 - 属性说明：此为整体密度系数，是可视雾层的厚度。
 - 效果图：
 
-<video controls src="https://cdn.233xyx.com/1683255361727_623.mp4"></video>
+<video controls src="https://cdn.233xyx.com/online/d6slMtpepjOS1702194132284.mp4"></video>
 
 - 相关接口：
 

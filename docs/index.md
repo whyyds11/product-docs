@@ -1,6 +1,6 @@
 # 口袋方舟
 
-![口袋方舟|文档](https://cdn.233xyx.com/athena/online/a5f8ed6d7c504e17b8262d402caf749c_11843548.webp)
+![口袋方舟|文档](https://cdn.233xyx.com/athena/online/11abdab01fbe43238aba9c969070fc43_89891044.webp)
 
 [产品文档](https://docs.ark.online/)会详细描述每个功能模块的全部功能，方便开发者用到什么查什么。
 [教程文档](https://learning.ark.online/)则拥有较强的上下文关系与系统性，方便萌新按顺序从安装编辑器开始学习到可以制作自己的游戏项目。
