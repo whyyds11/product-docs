@@ -22,7 +22,7 @@
 
 ### 游戏代码编写
 
-在需要接入广告的位置粘贴以下代码（参考[广告相关API](https://api-docs.ark.online/classes/Service.AdsService.html)），并在相应位置填写广告播放逻辑即可。
+在需要接入广告的位置粘贴以下代码（参考[广告相关API](https://api-docs.ark.online/classes/mw.AdsService.html)），并在相应位置填写广告播放逻辑即可。
 
 ::: tip 使用前获取广告激活状态，如果广告未激活则隐藏广告相关功能
 
@@ -30,49 +30,34 @@ const isActive=AdsService.getInstance.isActive(AdsType.Reward)
 
 :::
 
-播放广告的工具类
+该API需要传入两个参数，第一个参数是传入播放广告的类型，第二个参数是传入播放广告的回调
 
-```TypeScript
-const AdsInstance = Service.AdsService.getInstance();
-const isActive = AdsInstance.isActive(AdsType.Reward);
+**播放激励广告：**
 
-export class IAAUtil {
-    /**
-     * 播放广告
-     * @param myAdsType 广告类型 
-     * @param callback 回调（是否成功播放）
-     * @returns 
-     */
-    public static playAds(callback: (result: boolean) => void) {
-        if (Util.SystemUtil.isPIE) {
-            callback(true);
-        }
-        //未激活广告
-        if (!isActive) {
-            return;
-        }
-        //广告是否准备好
-        AdsInstance.isReady(AdsType.Reward, async (isReady: boolean) => {
-            if (isReady) {
-                //广告准备好
-                AdsInstance.showAd(AdsType.Reward, async (isSuccess: boolean) => {
-                    if (isSuccess) {
-                        //广告播放完成回调，给奖励等在此进行
-                        setTimeout(() => {
-                            callback(true);
-                        }, 1000);
-                    }else {
-                        //广告加载或者播放失败，在此处理
-                        //实际上这里最大可能是233版本过低不支持广告
-                    }
-                })
-            } else {
-                //广告还未准备好
-                return
-            }
-        })
+> **激励广告**的含义：需要全部看完，偶尔快看完了的时候会出现跳过按钮，玩家的选择权更小，一般用作看广告获得奖励，建议放之前说明清楚，引导玩家全部看完，以提高广告收益。
+
+```ts
+AdsService.showAd(AdsType.Reward, (isSuccess: boolean) => {
+    if (isSuccess) {
+        // 广告播放成功
+    } else {
+        // 广告播放失败
     }
-}
+})
+```
+
+**播放插屏广告：**
+
+> 插屏广告的含义：可以不全部看完，看几秒后会有关闭的按钮，玩家的选择权更大，不建议太频繁播放。
+
+```ts
+AdsService.showAd(AdsType.Interstitial, (isSuccess: boolean) => {
+    if (isSuccess) {
+        // 广告播放成功
+    } else {
+        // 广告播放失败
+    }
+})
 ```
 
 广告类型

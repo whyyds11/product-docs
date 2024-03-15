@@ -73,7 +73,7 @@ export default defineConfigWithTheme<DefaultTheme.Config>({
         collapsed: true,
         items: [
           { text: '编辑器窗口操作', link: '/Editor/EditorWindowsOperation.md' },
-          { text: 'Transform工具', link: '/Editor/TransformTool.md'},
+          { text: 'Transform工具', link: '/Editor/TransformTool.md' },
           {
             text: '画质级别模拟与设置',
             link: '/Editor/GraphicsQualitySettings.md'
@@ -171,7 +171,9 @@ export default defineConfigWithTheme<DefaultTheme.Config>({
         collapsed: true,
         items: [
           { text: '冲量对象', link: '/MotionControlObjects/ImpulseObject.md' },
-          { text: '运动器', link: '/MotionControlObjects/IntegratedMover.md' }
+          { text: '运动器', link: '/MotionControlObjects/IntegratedMover.md' },
+          { text: '力区域', link: '/MotionControlObjects/ForceVolume.md' },
+          { text: '物理连接', link: '/MotionControlObjects/RigidConstraint.md' }
         ]
       },
       {
@@ -220,7 +222,8 @@ export default defineConfigWithTheme<DefaultTheme.Config>({
             link: '/Resource/assetdownloadandload.md'
           },
           { text: '资源上传工具', link: '/Resource/AssetUpload.md' },
-          { text: '材质编辑器', link: '/Resource/MaterialEditor.md' }
+          { text: '材质编辑器', link: '/Resource/MaterialEditor.md' },
+          { text: 'AIGC及资源管理', link: '/CreatorPortal/AIGC&Resource.md' }
         ]
       },
       {
@@ -251,8 +254,12 @@ export default defineConfigWithTheme<DefaultTheme.Config>({
           },
           { text: '管理游戏版本', link: '/CreatorPortal/VersionManagement.md' },
           {
-            text: '游戏曝光运营',
+            text: '游戏推荐及曝光',
             link: '/CreatorPortal/Promotion&Operation.md'
+          },
+          {
+            text: '游戏福利及活跃',
+            link: '/CreatorPortal/GameBenefits.md'
           },
           { text: '管理游戏社区', link: '/CreatorPortal/Community.md' },
           {
@@ -267,6 +274,15 @@ export default defineConfigWithTheme<DefaultTheme.Config>({
         collapsible: true,
         collapsed: true,
         items: [
+          { text: 'v0.30.0.7', link: '/ReleaseNote/v0.30.0.7.md' },
+          { text: 'v0.30.0.6', link: '/ReleaseNote/v0.30.0.6.md' },
+          { text: 'v0.30.0.5', link: '/ReleaseNote/v0.30.0.5.md' },
+          { text: 'v0.30.0.4', link: '/ReleaseNote/v0.30.0.4.md' },
+          { text: 'v0.30.0.3', link: '/ReleaseNote/v0.30.0.3.md' },
+          { text: 'v0.30.0.2', link: '/ReleaseNote/v0.30.0.2.md' },
+          { text: 'v0.30.0.1', link: '/ReleaseNote/v0.30.0.1.md' },
+          { text: 'v0.30.0.0', link: '/ReleaseNote/v0.30.0.0.md' },
+          { text: 'v0.29.0.7', link: '/ReleaseNote/v0.29.0.7.md' },
           { text: 'v0.29.0.6', link: '/ReleaseNote/v0.29.0.6.md' },
           { text: 'v0.29.0.5', link: '/ReleaseNote/v0.29.0.5.md' },
           { text: 'v0.29.0.4', link: '/ReleaseNote/v0.29.0.4.md' },
@@ -329,12 +345,8 @@ export default defineConfigWithTheme<DefaultTheme.Config>({
     siteTitle: '产品手册',
     nav: [
       {
-        text: '官网',
-        link: 'https://creator.ark.online/'
-      },
-      {
-        text: '论坛',
-        link: 'https://forum.ark.online/'
+        text: '创作者',
+        link: 'https://portal.ark.online/'
       },
       {
         text: '教程',
@@ -345,15 +357,25 @@ export default defineConfigWithTheme<DefaultTheme.Config>({
         link: 'https://api-docs.ark.online/'
       },
       {
-        text: '创作者',
-        link: 'https://portal.ark.online/'
+        text: '论坛',
+        link: 'https://forum.ark.online/'
       },
       {
         text: '029 版本',
         items: [
           {
-            text: '主版本',
-            link: 'https://docs.ark.online/',
+            text: '028 版本',
+            link: 'https://docs-028.ark.online/',
+            path: true
+          },
+          {
+            text: '027 版本',
+            link: 'https://docs-027.ark.online/',
+            path: true
+          },
+          {
+            text: '030 版本',
+            link: 'https://docs-030.ark.online/',
             path: true
           }
         ]
