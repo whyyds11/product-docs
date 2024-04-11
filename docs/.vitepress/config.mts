@@ -274,6 +274,7 @@ export default defineConfigWithTheme<DefaultTheme.Config>({
         collapsible: true,
         collapsed: true,
         items: [
+          { text: 'v0.30.0.8', link: '/ReleaseNote/v0.30.0.8.md' },
           { text: 'v0.30.0.7', link: '/ReleaseNote/v0.30.0.7.md' },
           { text: 'v0.30.0.6', link: '/ReleaseNote/v0.30.0.6.md' },
           { text: 'v0.30.0.5', link: '/ReleaseNote/v0.30.0.5.md' },
@@ -364,9 +365,12 @@ export default defineConfigWithTheme<DefaultTheme.Config>({
         text: '030 版本',
         items: [
           {
+            text: '030 版本',
+            link: 'https://docs-030.ark.online/',
+          },
+          {
             text: '主版本',
             link: 'https://docs.ark.online/',
-            path: true
           }
         ]
       }
