@@ -17,13 +17,17 @@
 
 点击编辑器工具栏最右侧的设置按钮，点击后出现设置窗口。
 
-![](https://wstatic-a1.233leyuan.com/productdocs/static/boxcn2RQHM6BuV8sWNV98ZLoTNc.png)
+|中文示例|英文示例|
+|-----|-----|
+|![](https://cdn.233xyx.com/athena/online/b5ff28a3764c4c4fbb98e6da3fb09372_219398011.webp)|![](https://cdn.233xyx.com/athena/online/365769774e4245e2b0fe228ed2828a84_219400738.webp)|
 
 **Step.2**
 
 点击窗口中的编辑器设置，选择画质分级模拟。
 
-![](https://cdn.233xyx.com/1684147435656_068.png)
+|中文示例|英文示例|
+|-----|-----|
+|![](https://cdn.233xyx.com/athena/online/b500fd7fb0c74734b90bc301becd1ffb_219398013.webp)|![](https://cdn.233xyx.com/athena/online/9c60dd1b9ca744e8bbb45d4b1ae11553_219398014.webp)|
 
 **Step.3**
 
@@ -31,11 +35,15 @@
 
 - 编辑器画质模拟：画质分级仅供开发者在主视口和运行视口预览客户端的画质效果。
 
-  ![](https://cdn.233xyx.com/1684147435699_605.png)
+|中文示例|英文示例|
+|-----|-----|
+|![](https://cdn.233xyx.com/athena/online/217411277ac2448897355edb887da4cb_219398015.webp)|![](https://cdn.233xyx.com/athena/online/d9871eea5148442c9879c31aa19a88a3_219398016.webp)|
 
 - 客户端备用画质：启动客户端游戏时，系统会根据机型自动匹配画质分级，未匹配到机型时将使用该备用画质。
 
-  ![](https://cdn.233xyx.com/1684147435609_103.png)
+|中文示例|英文示例|
+|-----|-----|
+|![](https://cdn.233xyx.com/athena/online/d7ea29c45ee7449ebf1c9b2b4d579918_219398017.webp)|![](https://cdn.233xyx.com/athena/online/9b71bb99e00b4cdf922ec2fcdbfc8beb_219398018.webp)|
 
 **Step.4**
 
@@ -43,9 +51,10 @@
 
 ## 不同级别画质的效果如何？
 
-| 最低级别1级  | 最高级别电影画质 |
-| --------- | ------------ |
-| ![](https://cdn.233xyx.com/1682306517117_933.png) | ![](https://cdn.233xyx.com/1682306517084_778.png) |
+| | 最低级别1级  | 最高级别电影画质 |
+|-----| --------- | ------------ |
+|**中文示例**| ![](https://cdn.233xyx.com/athena/online/4b52e79351954d33b357d8d3447a790a_219398019.webp) | ![](https://cdn.233xyx.com/athena/online/27fddcea68634184b9cd4b4d5b9efde4_219398021.webp) |
+|**英文示例**| ![](https://cdn.233xyx.com/athena/online/479565eafd8a454f8f267de3a95cba33_219398020.webp) | ![](https://cdn.233xyx.com/athena/online/e30f78aeb11640ab80b3f3f180dfc6bb_219398022.webp) |
 
 ## 注意事项与建议
 

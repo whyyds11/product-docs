@@ -194,42 +194,62 @@ Transform工具的相关功能见[Transform工具](https://docs-029.ark.online/E
 
 #### 对齐工具
 
-功能入口：工具栏——对齐工具
+##### 功能入口：
 
-![](https://wstatic-a1.233leyuan.com/productdocs/static/boxcnZ8TpCISwkfw9T74dEqlZFh.png)
+工具栏 > 模型 > 对齐工具
 
-打开后默认显示在属性面板
+<img src="https://cdn.233xyx.com/athena/online/c15805a2fbe740a18fe95599151b4658_222823438.webp" width="50%">
 
-![](https://wstatic-a1.233leyuan.com/productdocs/static/boxcnkJoM2EuoyL3occ9wjwzyxe.png)
+打开后默认显示在主界面右侧下方的区域
 
-使用
-- 模式：按所选轴的最大/居中/最小进行对齐
+<img src="https://cdn.233xyx.com/athena/online/ebf992e5c96c4b558b590b484c791a4c_222834367.webp" width="80%">
 
-![](https://wstatic-a1.233leyuan.com/productdocs/static/boxcnSM55P5JTEM2LBWbCUcRdDg.png)
+##### 功能模式：
 
-- 对齐轴：按世界/本地坐标进行对齐，坐标轴可进行多选
+| 模式 | 图示 | 说明 |
+| ----- | ----- | ----- |
+| 最小对齐 | <img src="https://cdn.233xyx.com/athena/online/177da678765446f3a938b45b332598b3_222857489.webp" width="100%"> | 选中对象沿设定的轴向对齐到参照对象最小值的顶点所在的垂直平面上|
+| 居中对齐 | <img src="https://cdn.233xyx.com/athena/online/0b4fd3c217cc44288f568bc5ed054df1_222866467.webp" width="100%"> | 选中对象沿设定的轴向与参照对象中心对齐 |
+| 最大对齐 | <img src="https://cdn.233xyx.com/athena/online/43871d68b5e04740ac751a14bf302421_222867999.webp" width="100%"> | 选中对象沿设定的轴向对齐到参照对象最大值的顶点所在的垂直平面上 |
+| 均匀分布 | <img src="https://cdn.233xyx.com/athena/online/2171b3fb8bf1485d8b4255ded4795026_222868255.webp" width="100%"> | 选中对象中，沿设定的轴向固定一头一尾的对象，使所有相邻对象在选定轴向上相邻顶点之间的间距相同 |
+| 等距分布 | <img src="https://cdn.233xyx.com/athena/online/e5d1475521c74cbd87407c28bf295675_222868459.webp" width="100%"> | 选中对象中，固定参照对象，使其他对象相对于参照对象在选定轴向上按用户输入的间距排布 |
 
-![](https://wstatic-a1.233leyuan.com/productdocs/static/boxcn4dNlzQJU3DieDAWfHl50Wb.png)
+##### 对齐轴向：
 
-- 参考系：
+<img src="https://cdn.233xyx.com/athena/online/dde804a4c5e84ee8ad7460b72262a4c6_222916838.webp" width="20%">
 
-![](https://wstatic-a1.233leyuan.com/productdocs/static/boxcnPQO1mQrtDkQ0753ZUagMfq.png)
+设定沿 X / Y / Z 轴中的哪个轴向进行对齐操作
 
-- 选择范围：按照所选对象形成的包围盒进行对齐
-- 活跃对象：默认为最后一个选择的对象，以此对象为参考系
-  - 勾选此项后，可通过左键修改活跃对象，活跃对象的边框颜色为橙色
+##### 坐标系：
 
-![](https://wstatic-a1.233leyuan.com/productdocs/static/boxcnYi28ez5mTHS0z0XNLxsRhd.png)
+<img src="https://cdn.233xyx.com/athena/online/f356910f1c8e4eb3a002265b279f1a6d_222921303.webp" width="20%">
 
-对齐：当所有选项均被选择后，对齐按钮高亮，鼠标hover至对齐工具面板中，主视口显示对齐轴/面/点
+设定轴向使用的坐标系（世界轴向/本地轴向）
 
-![](https://wstatic-a1.233leyuan.com/productdocs/static/boxcnJbWcx8pQ4XwprzkBR8QPzO.png)
+##### 参照对象：
 
-![](https://wstatic-a1.233leyuan.com/productdocs/static/boxcnhpQCZDQaZ9RXXzHpSFCm6b.png)
+<img src="https://cdn.233xyx.com/athena/online/adb29690e2f34cebbce65d8e463a8340_222925692.webp" width="20%">
 
-![](https://wstatic-a1.233leyuan.com/productdocs/static/boxcnS3zf4LhGNbDjz0DhDe45pd.png)
+设定对齐操作相对于哪个对象进行
 
-![](https://wstatic-a1.233leyuan.com/productdocs/static/boxcnetoe5lhZXZWYgcLC1coSBh.png)
+##### 操作方式：
+
+1. 设定功能模式、对齐轴向、坐标系与参照对象
+2. 光标移动到“确认对齐”按钮可以预览对齐后对象的位置变化
+3. 点击“确认对齐”执行对齐操作
+
+##### 演示：
+- 沿不同轴向进行最小 / 居中 / 最大对齐：
+
+<video controls src="https://cdn.233xyx.com/athena/online/f21f046b35914070b46ae46c7cb3bb19.mp4"></video>
+
+- 沿特定轴向进行均匀分布：
+
+<video controls src="https://cdn.233xyx.com/athena/online/8a5065bd1b5242c38724a04bbe36d315.mp4"></video>
+
+- 结合“最小对齐”功能与“等距分布”功能搭建场景：
+
+<video controls src="https://cdn.233xyx.com/athena/online/0aa0f194783e4984894bea3a77693726.mp4"></video>
 
 #### 本地化
 
