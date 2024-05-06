@@ -36,10 +36,20 @@
     //在玩家点击广告按钮之后，即将播放广告之前触发onShow
     adsbutton1.onShow.add((isReady: boolean)=>{
         //可以根据isReady的值执行不同的逻辑，比如没有广告可以播放时弹出提示，有广告并播放的时候暂停怪物攻击
+  			if (isReady) {
+  				this.onShowReady();
+  			}else{
+  				this.onShowUnready();
+  			}
     })         
     //在玩家关闭广告之后，触发onClose
     adsbutton1.onClose.add((isSuccess: boolean)=>{
         //可以根据isSuccess的值执行不同的逻辑，比如是否要给玩家发放奖励
+  			if (isSuccess) {
+  				this.onCloseSuccess();
+  			}else{
+  				this.onCloseFailure();
+  			}
     })  
 ```
 - 如果希望在没有创建广告按钮的时候就能查询到当前是否有可以播放的广告，可以使用AdsService.isReady进行查询，例如想要实现有广告可以播放才创建广告按钮的逻辑，可以参考以下写法：
@@ -49,6 +59,7 @@
     AdsService.isReady( (isReady) => {
         if (!isReady) {
             //这里执行没有广告可以播放的逻辑
+            this.onShowUnready();
         }else{
             //这里执行有广告可以播放的逻辑，例如创建广告按钮
             //创建广告按钮，注意其被任何可见性不为隐藏/折叠的UI遮挡时无法播放广告
@@ -56,10 +67,20 @@
             //在玩家点击广告按钮之后，即将播放广告之前触发onShow
             adsbutton1.onShow.add((isReady: boolean)=>{
                 //可以根据isReady的值执行不同的逻辑，比如没有广告可以播放时弹出提示，有广告并播放的时候暂停怪物攻击
+          			if (isReady) {
+          				this.onShowReady();
+          			}else{
+          				this.onShowUnready();
+          			}
             })         
             //在玩家关闭广告之后，触发onClose
             adsbutton1.onClose.add((isSuccess: boolean)=>{
                 //可以根据isSuccess的值执行不同的逻辑，比如是否要给玩家发放奖励
+          			if (isSuccess) {
+          				this.onCloseSuccess();
+          			}else{
+          				this.onCloseFailure();
+          			}
             })  
         }
     }) 
