@@ -199,62 +199,6 @@ function onReject(reason: any): PromiseLike<never> {
 
 <video controls src="https://cdn.233xyx.com/online/m4K6bdiXD2Xm1700648068179.mp4"></video>
 
-## 游戏跳转
-
-
-功能说明：玩家们可以在不同的游戏项目中进行传送，将玩家们从一个游戏的场景传送至另一个游戏的某个场景内。
-
-实际应用：首先我们需要通过开发者平台，获取到目标游戏的游戏ID，然后通过游戏ID进行游戏间的传送。如果我们需要传送到游戏的某个场景，则需要获取目标游戏场景名称，并且目标游戏场景需要开通公开传送功能，才能够进行指定场景的传送功能。
-
-实现步骤：
-- 首先我们需要先确定目标游戏的游戏ID，如果是我们自己的游戏，我们可以打开开发者平台，找到我们的对应游戏的基础信息，并且复制下该游戏的游戏ID。如果不是我们的游戏，则需要游戏开发者给到我们游戏ID。
- 
-![](https://cdn.233xyx.com/online/MORP0QMVJc791700648068179.png)
-
-- 我们在获取到目标游戏的游戏ID后，我们就可以构建自己的游戏逻辑，进行游戏跳转。这次我们利用UI进行跳转，先打开UI编辑器，放置一个游戏跳转按钮。
-
-![](https://cdn.233xyx.com/online/faIng0HnZXFy1700648068179.png)
-
-- 保存UI文件后，我们在默认的DefaultUI脚本中，加入按钮的触发事件。
-
-```ts
-//找到对应的传送按钮
-const teleportBtn = this.uiWidgetBase.findChildByPath('RootCanvas/Button') as Button
-
-//点击传送按钮,发送传送事件
-teleportBtn.onPressed.add(()=>{
-    Event.dispatchToServer("teleport");
-})  
-```
-
-- 然后我们新增一个脚本，将下面的脚本挂载到场景中，挂载后即完成了游戏跳游戏的逻辑。
-
-```ts
-@Component
-export default class NewScript extends Script {
-
-    /** 当脚本被实例后，会在第一帧更新前调用此函数 */
-    protected onStart(): void {
-        //监听"传送"事件
-        Event.addClientListener("teleport", (chara: Player) => {
-            //将当前玩家传送到游戏ID为“p_4156”的场景中
-            TeleportService.asyncTeleportToGame("p_4156", [chara.userId]).then(onResolve, onReject);
-
-        })
-    }
-}
-
-function onResolve(value: TeleportResult): void{
-    console.log(value.errorCode);
-}
-
-function onReject(reason: any):  void{
-    console.log(reason);
-}
-```
-
-- 注意：游戏跳游戏只能在游戏过审后，才能进行跳转，如果在编辑器内部运行或游戏未过审时，是无法进行游戏跳转的。
-
 ## 房间跳转
 
 功能说明：玩家们在同一个游戏项目中的相同场景的不同房间或不同场景的房间进行传送，将玩家们从一个场景房间传送至另一个场景房间内。
