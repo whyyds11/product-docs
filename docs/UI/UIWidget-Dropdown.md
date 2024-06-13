@@ -65,7 +65,7 @@ export default class DefaultUI extends UIScript {
         
         //找到对应的下拉菜单
         const dropdown = this.uiWidgetBase.findChildByPath('RootCanvas/Dropdown') as Dropdown
-        //情况下拉菜单的默认选项
+        //清空下拉菜单的默认选项
         dropdown.clearOptions()
         //打开菜单时增加各个选项
         dropdown.onOpeningEvent.add(()=>{
