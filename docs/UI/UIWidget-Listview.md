@@ -39,7 +39,19 @@
 ![](https://cdn.233xyx.com/online/t506mfXE9wHx1718169533166.png)
 - 第二步：创建一个列表视图，将上一步创建的条目UI文件拖入到属性面板，并修改列表视图的基础样式，包括滚动朝向、条目边距、菜单行样式、滚动条样式。
 ![](https://cdn.233xyx.com/online/4rpEYGeYZDg31718169532608.png)
-- 第三步：先编写条目UI文件对应的脚本，获取UI文件中的文本框，这里我们将列表视图节点数据基类（ListViewItemDataBase）的序号填入文本框，实际项目中这里可以写更多逻辑，让每行项目展示不同的内容。
+- 第三步：先编写条目UI文件对应的脚本，获取UI文件中的文本框，这里我们将列表视图实现节点数据基类（ListViewItemDataBase）的序号填入文本框，实际项目中这里可以写更多逻辑，让每行项目展示不同的内容。
+
+```ts
+// 继承实现ListViewItemDataBase，由于 baseGuid 是唯一值，不可控，因此新增一个自定义数据即可，本例中该值为 itemIndex
+export default class ListViewItemData extends ListViewItemDataBase {
+    itemIndex : number = 0
+    
+    constructor(index: number) {
+        super()
+        this.itemIndex = index
+    }
+}
+```
 ```ts
 export default class NewUIScript1 extends UIScript {
   TextBlock : mw.TextBlock;
@@ -48,13 +60,15 @@ export default class NewUIScript1 extends UIScript {
         this.TextBlock = this.uiWidgetBase.findChildByPath('RootCanvas/TextBlock') as TextBlock;
     }
 
-    set data(inRowData : ListViewItemDataBase) {
-        this.TextBlock.text = inRowData.baseGuid.toString();
+    set data(inRowData : ListViewItemData) {
+        // 使用继承类的 itemIndex 作为固定索引值
+        this.TextBlock.text = inRowData.itemIndex.toString();
     }
 }
 ```
 - 第四步：编写列表视图所在UI文件对应的脚本，这里我们写一个按下数字键1新增项目的逻辑便于测试效果：
-  - 触发列表视图刷新onItemRefreshed时，通过节点数据基类（ListViewItemDataBase）刷新各UI项目的表现；增加/删除/修改/玩家滚动列表视图/请求刷新等操作都会触发刷新，而清空不会触发刷新。
+  - 触发列表视图刷新onItemRefreshed时，通过实现节点数据基类（ListViewItemDataBase）刷新各UI项目的表现；增加/删除/修改/玩家滚动列表视图/请求刷新等操作都会触发刷新，而清空不会触发刷新。
+ 
 ```ts
 export default class NewUIScript extends UIScript {
 
@@ -63,15 +77,17 @@ export default class NewUIScript extends UIScript {
      */
     protected onStart() {
         this.ListView = this.uiWidgetBase.findChildByPath('RootCanvas/ListView') as mw.ListView;
+        let index = 0
         //按下数字键1新增项目
         InputUtil.onKeyDown(Keys.One, () => {
-            // 代码动态添加一份 ListViewItemDataBase 数据进入 ListView
-            this.ListView.addItems([new mw.ListViewItemDataBase()]);
+            // 代码动态添加一份 ListViewItemData 数据进入 ListView
+            this.ListView.addItems([new ListViewItemData(index)]);
+            index++
         });
 
-        this.ListView.onItemRefreshed.add((newWorkList : mw.ListViewItemDataBase[])=>{
+        this.ListView.onItemRefreshed.add((newWorkList : ListViewItemData[])=>{
           console.log("_____onItemRefreshed");
-          newWorkList.forEach((workItem : mw.ListViewItemDataBase)=>{
+          newWorkList.forEach((workItem : ListViewItemData)=>{
             const typeSc = mw.findUIScript(workItem.widgetCanvas) as any;
             typeSc.data = workItem;
           });
@@ -80,19 +96,19 @@ export default class NewUIScript extends UIScript {
 }
 ```
 ::: tip
-请注意如果是瓦片视图，需要在上述代码获得TileView控件之后，需要手动设置排列规则，如下：
-this.TileView = this.uiWidgetBase.findChildByPath('RootCanvas/TileView') as mw.TileView
-// 通过设置子对象的宽高来决定对象的排列规则
-// 本例中TileView宽400+，这里设定itemWidth200
-// 因此如下图一排容纳了两个
-this.TileView.itemWidth = 200
-this.TileView.itemHeight = 50
+请注意如果是瓦片视图，需要在上述代码获得TileView控件之后，需要手动设置排列规则，如下：\n
+this.TileView = this.uiWidgetBase.findChildByPath('RootCanvas/TileView') as mw.TileView\n
+// 通过设置子对象的宽高来决定对象的排列规则\n
+// 本例中TileView宽400+，这里设定itemWidth200\n
+// 因此如下图一排容纳了两个\n
+this.TileView.itemWidth = 200\n
+this.TileView.itemHeight = 50\n
 
-// TileView继承自ListView，相关数据也保持一致
-let arrTileV:mw.ListViewItemDataBase[] = []
-for(let index = 0; index < 10; index++){
-    arrTileV.push(new mw.ListViewItemDataBase())
-}
+// TileView继承自ListView，相关数据也保持一致\n
+let arrTileV:ListViewItemData[] = []\n
+for(let index = 0; index < 10; index++){\n
+    arrTileV.push(new ListViewItemData(index))\n
+}\n
 tileV.addItems(arrTileV)
 :::
 
