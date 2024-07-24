@@ -260,11 +260,9 @@ export default defineConfigWithTheme<DefaultTheme.Config>({
           },
           { text: '分析游戏数据', link: '/CreatorPortal/Analytics.md' },
           { text: '接入游戏广告', link: '/CreatorPortal/Advertising.md' },
- { text: '接入游戏内购', link: '/CreatorPortal/In-App Purchase.md' },
-          {
-            text: '游戏性能及排查',
-            link: '/CreatorPortal/PerformanceOverview.md'
-          },
+          { text: '接入游戏内购', link: '/CreatorPortal/In-App Purchase.md' },
+          { text: '游戏性能及报错', link: '/CreatorPortal/PerformanceOverview.md' },
+          { text: '房间监控及日志', link: '/CreatorPortal/Room&Logs.md' },
           { text: '管理游戏版本', link: '/CreatorPortal/VersionManagement.md' },
           {
             text: '游戏推荐及曝光',
@@ -287,6 +285,8 @@ export default defineConfigWithTheme<DefaultTheme.Config>({
         collapsible: true,
         collapsed: true,
         items: [
+          { text: 'v0.35.0.4', link: '/ReleaseNote/v0.35.0.4.md' },
+          { text: 'v0.35.0.3', link: '/ReleaseNote/v0.35.0.3.md' },
           { text: 'v0.35.0.2', link: '/ReleaseNote/v0.35.0.2.md' },
           { text: 'v0.35.0.1', link: '/ReleaseNote/v0.35.0.1.md' },
           { text: 'v0.35.0.0', link: '/ReleaseNote/v0.35.0.0.md' },
@@ -399,9 +399,13 @@ export default defineConfigWithTheme<DefaultTheme.Config>({
         text: '主版本',
         items: [
           {
+            text: '036 版本',
+            link: 'https://docs-036.ark.online/'
+          },
+         {
             text: '034 版本',
             link: 'https://docs-034.ark.online/'
-          }
+          }      
         ]
       }
     ],
