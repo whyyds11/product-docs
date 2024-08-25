@@ -417,12 +417,12 @@ export default defineConfigWithTheme<DefaultTheme.Config>({
         items: [
           {
 
-            text: '037 版本',
-            link: 'https://docs-037.ark.online/'
+            text: '038 版本',
+            link: 'https://docs-038.ark.online/'
           },
          {
-            text: '035 版本',
-            link: 'https://docs-035.ark.online/'
+            text: '036 版本',
+            link: 'https://docs-036.ark.online/'
           }     
         ]
       }
