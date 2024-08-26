@@ -18,7 +18,9 @@
 
 ### 人形插槽介绍说明
 
-![](https://cdn.233xyx.com/online/Cufvbi7QR6YB1694604176305.png)    
+| 中文示例    | 英文示例                                                         |
+| ----------- | ------------------------------------------------------------ |
+|![img](https://qn-cdn.233leyuan.com/athena/online/ff6f5721012647f1a65cae81028958ad_365631213.webp)|![img](https://qn-cdn.233leyuan.com/athena/online/6ecd120789a74256984662116a6241cb_365631214.webp)|
 
 | 中文名称  | 枚举名称 | 枚举序号  | 应用说明 |
 | ----- | ----- | ----- | ----- |
@@ -60,7 +62,9 @@
 
 ### 角色编辑器的插槽使用
 
-![](https://cdn.233xyx.com/online/JdiHxdSeRCPR1694604176305.PNG)        
+| 中文示例    | 英文示例                                                         |
+| ----------- | ------------------------------------------------------------ |
+|![img](https://qn-cdn.233leyuan.com/athena/online/ad68268fe2324d0880f5226d8a6b9a40_365631219.webp)|![img](https://qn-cdn.233leyuan.com/athena/online/d8cdef60c74d4d1e8a67dc06af9c60c7_365631221.webp)|
 
 【角色编辑器】中可以点击【挂件】页签。
 
@@ -76,7 +80,9 @@
 
 实际应用：我们可以利用插槽功能，将武器和装饰物或者特效套在角色上。实现想要的效果。
 
-![](https://cdn.233xyx.com/online/qy1UTUhkZOdK1694604176305.png) 
+| 中文示例    | 英文示例                                                         |
+| ----------- | ------------------------------------------------------------ |
+|![img](https://qn-cdn.233leyuan.com/athena/online/974587bb716b451eaf4dd2964251fa29_365631220.webp)|![img](https://qn-cdn.233leyuan.com/athena/online/d7d7c05329a34a7fab45c915e0712eb4_365631222.webp)|
 
 首先我们将【29052】的武器资源和【27704】的特效的资源放置在优先加载的列表
 
@@ -174,7 +180,9 @@ halo.destroy()
 
 ### 四足插槽介绍说明
 
-![](https://cdn.233xyx.com/online/WFXtm1raGxJn1706167819283.png)    
+| 中文示例    | 英文示例                                                         |
+| ----------- | ------------------------------------------------------------ |
+|![img](https://qn-cdn.233leyuan.com/athena/online/bfdbd8f388414988a941155a3b71416f_365631215.webp)|![img](https://qn-cdn.233leyuan.com/athena/online/4e6e06f67180487f85519aa0394aabf4_365631216.webp)|
 
 | 中文名称  | 枚举名称 | 枚举序号  | 应用说明 |
 | ----- | ----- | ----- | ----- |
@@ -205,8 +213,9 @@ chara.attachToSlot(halo, NonHumanoidType.Head);
 
 ### 鱼插槽介绍说明
 
-![](https://cdn.233xyx.com/online/G9uBFJZ1fY0k1712573880968.png)    
-![](https://cdn.233xyx.com/online/a2EHfHKV8ZlC1712573886124.png)    
+| 中文示例    | 英文示例                                                         |
+| ----------- | ------------------------------------------------------------ |
+|![img](https://qn-cdn.233leyuan.com/athena/online/19ad9fafdd1f4b05896e75ec9dbfa0ed_365631217.webp)|![img](https://qn-cdn.233leyuan.com/athena/online/47e1a4d9d8604e53bd173f5cd79588ec_365639250.webp)|
 
 | 中文名称  | 枚举名称 | 枚举序号  | 应用说明 |
 | ----- | ----- | ----- | ----- |
@@ -221,9 +230,6 @@ chara.attachToSlot(halo, NonHumanoidType.Head);
 | 右边鱼鳍 | RearRightFoot | 9 | 放置攻击特效和道具等 |
 
 ### 西方龙插槽介绍说明
-
-![](https://cdn.233xyx.com/online/89wj7z8OglFR1712573890339.png)    
-![](https://cdn.233xyx.com/online/vkHY59RBhNIq1712573894163.png)  
 
 | 中文名称  | 枚举名称 | 枚举序号  | 应用说明 |
 | ----- | ----- | ----- | ----- |
@@ -242,8 +248,6 @@ chara.attachToSlot(halo, NonHumanoidType.Head);
 | 右翼翅膀 | RightWing | 18 | 放置飞行特效 |
 
 ### 东方龙插槽介绍说明
-
-![](https://cdn.233xyx.com/online/oxwIh59VrLAX1712573898408.png)    
 
 | 中文名称  | 枚举名称 | 枚举序号  | 应用说明 |
 | ----- | ----- | ----- | ----- |
