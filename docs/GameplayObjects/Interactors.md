@@ -7,7 +7,9 @@
 
 【交互物】是一个给场景内对象提供与角色交互能力的逻辑对象。你可以自定义【交互物】的transform属性来控制检测区域的位置，朝向以此指定交互行为发生的位置。在角色与【交互物】交互时，角色会切换成指定的交互姿势，移动到交互位置并焊接至【交互物】上。处于交互中的角色不再受输入控制，转而通过控制【交互物】间接的控制与它交互的角色。交互行为会提供关键节点的委托事件便于用户执行对应的游戏逻辑。你可以在【本地资源库】中的【游戏功能对象】栏中找到【交互物】。
 
-![img](https://arkimg.ark.online/1684030872767-31.webp)
+| 中文示例    | 英文示例                                                         |
+| ----------- | ------------------------------------------------------------ |
+|![img](https://qn-cdn.233leyuan.com/athena/online/def39fc9f13445caa6e868da6dcc9ebb_365702455.webp)|![img](https://qn-cdn.233leyuan.com/athena/online/927a922378a74c6d93c89c7541ab4b4f_365702462.webp)|
 
 # 创建交互物
 
@@ -17,15 +19,21 @@
 
 1. 在【本地资源库】的【游戏功能对象】栏中找到【交互物】
 
-![img](https://arkimg.ark.online/1684030872767-32.webp)
+| 中文示例    | 英文示例                                                         |
+| ----------- | ------------------------------------------------------------ |
+|![img](https://qn-cdn.233leyuan.com/athena/online/def39fc9f13445caa6e868da6dcc9ebb_365702455.webp)|![img](https://qn-cdn.233leyuan.com/athena/online/927a922378a74c6d93c89c7541ab4b4f_365702462.webp)|
 
 2. 将对象拖入到场景中或者【对象管理器】
 
-![img](https://arkimg.ark.online/1684030872768-33.webp)
+| 中文示例    | 英文示例                                                         |
+| ----------- | ------------------------------------------------------------ |
+|![img](https://qn-cdn.233leyuan.com/athena/online/86db09f677e14fea99ff2d28ccf7fac9_365702457.webp)|![img](https://qn-cdn.233leyuan.com/athena/online/f1de6bbe2f3448c898998771b1b6cb59_365702464.webp)|
 
 3. 在右侧【对象管理器】中【对象】栏找到对应的【交互物】对象并自定义它的属性
 
-![img](https://arkimg.ark.online/1684030872768-34.webp)![img](https://arkimg.ark.online/1684030872768-35.webp)
+| 中文示例    | 英文示例                                                         |
+| ----------- | ------------------------------------------------------------ |
+|![img](https://qn-cdn.233leyuan.com/athena/online/0a31c8c7c4ae4b42b7be0d6dd41a516c_365702456.webp)|![img](https://qn-cdn.233leyuan.com/athena/online/846fc0f1165042d893659680e7a401f2_365702463.webp)|
 
 ## 通过脚本创建：
 
@@ -55,7 +63,9 @@ if(SystemUtil.isServer()) {
 
 在【对象管理器】中【对象】栏找到对应的【交互物】，选中后我们可以查看它的属性面板，通过属性面板我们可以修改【交互物】的部分属性。
 
-![img](https://arkimg.ark.online/1684030872768-36.webp)
+| 中文示例    | 英文示例                                                         |
+| ----------- | ------------------------------------------------------------ |
+|![img](https://qn-cdn.233leyuan.com/athena/online/0dfa6a114db6429791c87c342c2afbe7_365702458.webp)|![img](https://qn-cdn.233leyuan.com/athena/online/dac3bbb33ea341ebad50eff837189fdc_365702465.webp)|
 
 ## 交互插槽
 
@@ -95,7 +105,9 @@ chair.interactiveStance = "122449";
 
 1. 选中【交互物】对象后右键点击【复制对象ID】获取它的gameObjectId。此处注意区分【交互物】资源的gameObjectId和【交互物】对象的gameObjectId。
 
-![img](https://arkimg.ark.online/1684030872768-37.webp)
+| 中文示例    | 英文示例                                                         |
+| ----------- | ------------------------------------------------------------ |
+|![img](https://qn-cdn.233leyuan.com/athena/online/5910332811994f04b5f67331c6ba10c5_365702459.webp)|![img](https://qn-cdn.233leyuan.com/athena/online/8e251358df654c369ecd0d914de552af_365702466.webp)|
 
 2. 将脚本拖入对象管理器下，用下列代码替换脚本中的`onStart`方法：代码将异步查找ID对应的对象以【交互物】对象进行接收。
 
@@ -108,7 +120,9 @@ protected async onStart(): Promise<void> {
 
 1. 将脚本挂载到【交互物】对象下方
 
-![img](https://arkimg.ark.online/1684030872768-38.webp)
+| 中文示例    | 英文示例                                                         |
+| ----------- | ------------------------------------------------------------ |
+|![img](https://qn-cdn.233leyuan.com/athena/online/6d29e6aa0624441a83b910cbc2254242_365702460.webp)|![img](https://qn-cdn.233leyuan.com/athena/online/34516627bec140ccb9b56c4751b8b0ea_365729179.webp)|
 
 2. 在脚本的onStart方法中添加下列代码：代码获取脚本挂载的对象并以【交互物】对象进行接收
 
@@ -155,7 +169,9 @@ console.log("交互物当前交互角色：" + chair.getCurrentCharacter() ? cha
 
 下列示例中展示角色与一把椅子进行交互。先在【对象管理器】中制作一把椅子：将【交互物】拖入场景后将交互动画设置为”坐下玩手机“，交互插槽为”臀部“。在下方挂载椅子模型并修改至合适的相对位置。将脚本挂载至【交互物】下方，将代码添加到脚本onStart方法中。代码获取挂载的【交互物】对象，并添加了2个按键方法，每次按下键盘“1”键，就会调用`startInteract`接口与【交互物】进行交互。每次按下键盘“2”键，就会调用`endInteract`接口退出与【交互物】的交互。
 
-![img](https://arkimg.ark.online/1684030872768-39.webp)
+| 中文示例    | 英文示例                                                         |
+| ----------- | ------------------------------------------------------------ |
+|![img](https://qn-cdn.233leyuan.com/athena/online/b1c3da16ed0f4edb89cebfecb9fa883c_365702461.webp)|![img](https://qn-cdn.233leyuan.com/athena/online/7949913c6f0b4f51a0a20e3906ebfc1c_365702468.webp)|
 
 ```TypeScript
 let chair = this.gameObject as Interactor;
@@ -196,7 +212,7 @@ chair.onLeave.add(() => {
 });
 ```
 
-![img](https://arkimg.ark.online/1684030872768-40.webp)
+![img](https://qn-cdn.233leyuan.com/athena/online/8d5171384edc460c9aba514b229cc9a8_365702469.webp)
 
 ::: tip
 委托事件最好与【交互物】的接口调用端保持一致，例如玩家角色建议在客户端添加委托函数，而NPC则建议去服务端添加回调函数。这样可以保证状态的属性同步的稳定。
