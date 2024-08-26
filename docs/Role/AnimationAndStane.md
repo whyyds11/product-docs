@@ -43,7 +43,9 @@ let animation = chara.loadAnimation("14700");
 
 首先我们将角色对象放置在场景中
 
-![](https://cdn.233xyx.com/online/rsnL922UBiZ21694604277559.PNG)        
+| 中文示例    | 英文示例                                                         |
+| ----------- | ------------------------------------------------------------ |
+|![img](https://qn-cdn.233leyuan.com/athena/online/bdf9180c3ac241078dc1a6867eb5e959_365403023.webp)|![img](https://qn-cdn.233leyuan.com/athena/online/bab9a66e5362457dbca209cbd05fde6b_365403025.webp)|
 
 然后挂载下面的脚本
 
@@ -92,7 +94,9 @@ export default class NewScript extends Script {
 
 最后复制我们放置在场景中的角色对象的ID，并将脚本中的角色对象的ID进行替换，即可实现效果。
 
-![](https://cdn.233xyx.com/online/O3L2C4p7ny9i1694604277559.PNG) 
+| 中文示例    | 英文示例                                                         |
+| ----------- | ------------------------------------------------------------ |
+|![img](https://qn-cdn.233leyuan.com/athena/online/c5a4add751364f34acff3b2395d59034_365403024.webp)|![img](https://qn-cdn.233leyuan.com/athena/online/a6e15d0e8864423a9405cae053cc4139_365403026.webp)|
 
 效果图：
 
