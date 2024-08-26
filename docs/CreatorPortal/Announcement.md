@@ -46,7 +46,7 @@
 
 > 点击公告，用户将进入开发者配置的帖子/活动页面，详细了解公告内容
 
-![img](/Users/wangjingyu/Documents/Typora/Picture/(null)-20240826132819190-4650752.png)
+![img](https://arkimg.ark.online/(null)-20240826132819190-4650752.png)
 
 1. 进入对应[游戏界面](https://portal.ark.online/#/admin/announcement-list)，选择【公告配置】
 
