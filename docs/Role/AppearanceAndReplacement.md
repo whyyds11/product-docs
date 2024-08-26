@@ -27,7 +27,9 @@
 
 首先我们需要找到需要更换的资源ID。
 
-![](https://cdn.233xyx.com/online/DeWLk9IfmgFk1694158606115.png)        
+| 中文示例    | 英文示例                                                         |
+| ----------- | ------------------------------------------------------------ |
+|![img](https://qn-cdn.233leyuan.com/athena/online/699f06fe08b545c298acbbec229be207_365221812.webp)|![img](https://qn-cdn.233leyuan.com/athena/online/1aa5ff64685a4c70b23e62718f589e96_365221816.webp)|
 
 在【本地资源库】的【角色/NPC】列表中找到【基础人形形象】。
 
@@ -71,7 +73,9 @@ export default class NewScript extends Script {
 
 ### 多足形象换装
 
-![](https://cdn.233xyx.com/online/dmdDi0YD6Zi41694158606114.png)   
+| 中文示例    | 英文示例                                                         |
+| ----------- | ------------------------------------------------------------ |
+|![img](https://qn-cdn.233leyuan.com/athena/online/2f4d4036b2c7422c802c1771793b7409_365221813.webp)|![img](https://qn-cdn.233leyuan.com/athena/online/1ddf41ce65aa4e6aa1c607238df55c21_365221817.webp)|
 
 在【本地资源库】的【角色/NPC】列表中找到【多足形象】。
 
@@ -102,7 +106,9 @@ InputUtil.onKeyDown(Keys.One, () => {
 
 ## 高级人形形象形象换装
 
-![](https://cdn.233xyx.com/online/VC5yG2UL3L9p1694158606115.png)
+| 中文示例    | 英文示例                                                         |
+| ----------- | ------------------------------------------------------------ |
+|![img](https://qn-cdn.233leyuan.com/athena/online/a164a8e9a419463ba1338172c0ce5f50_365221814.webp)|![img](https://qn-cdn.233leyuan.com/athena/online/2da64c96592d41dfbdeeed6badfb9db1_365221818.webp)|
 
 切换高级人形形象与在角色编辑器内的操作一样，需要先切换角色设定的角色效果。
 
@@ -1508,7 +1514,9 @@ chara.description.advance.bodyFeatures.feet.feetOverallScale = 1
 
 ### 角色数据换装
 
-![](https://cdn.233xyx.com/online/d9qUo99hEBde1694169509299.png)    
+| 中文示例    | 英文示例                                                         |
+| ----------- | ------------------------------------------------------------ |
+|![img](https://qn-cdn.233leyuan.com/athena/online/1b66bc05404d41e6aa65bafbe51ca778_365221815.webp)|![img](https://qn-cdn.233leyuan.com/athena/online/32d28d7824884c19a11fbcde32825129_365221819.webp)|
 
 角色数据说明：角色数据是服装信息、捏脸数据、插槽数据等综合一起的一个文件。
 
