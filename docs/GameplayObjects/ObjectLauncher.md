@@ -20,22 +20,30 @@
 
 对象发射器是一个功能对象，在资源库中的资源ID是：“ObjectLauncher”。要创建一个对象发射器，请执行以下操作：
 
-![img](https://arkimg.ark.online/1699844575734-31.webp)
+| 中文示例    | 英文示例                                                         |
+| ----------- | ------------------------------------------------------------ |
+|![img](https://qn-cdn.233leyuan.com/athena/online/1861bc1d87954c8c8ecdbb3dbbfbb59a_366802833.webp)|![img](https://qn-cdn.233leyuan.com/athena/online/eb3b8e7a53ab455f86e0fb103f8a185b_366802841.webp)|
 
 1. 在编辑器左侧找到资源库窗口，如果资源库窗口不存在，则点击菜单栏中视图选项，勾选显示资源库。
 
-![img](https://arkimg.ark.online/1699844575735-32.webp)
+| 中文示例    | 英文示例                                                         |
+| ----------- | ------------------------------------------------------------ |
+|![img](https://qn-cdn.233leyuan.com/athena/online/85551ac2f0a045759551ce620fa0274a_366802834.webp)|![img](https://qn-cdn.233leyuan.com/athena/online/370bd35891654178ac46b12a055ce845_366802842.webp)|
 
 1. 点击工具包图标，进入游戏对象资源库。
 2. 点击游戏功能对象栏目查看编辑器提供的所有功能对象。
 3. 找到资源：对象发射器。它由一个飞行投掷物作为图标。将鼠标悬停在对象上查看对象信息。
 
-![img](https://arkimg.ark.online/1699844575735-33.webp)
+| 中文示例    | 英文示例                                                         |
+| ----------- | ------------------------------------------------------------ |
+|![img](https://qn-cdn.233leyuan.com/athena/online/2d8991b5eac14f4abd108cb30204fb75_366802835.webp)|![img](https://qn-cdn.233leyuan.com/athena/online/8208f6565a35421e835e80b9c37c9985_366802843.webp)|
 
 1. 鼠标左键点击选中对象发射器，按住拖入到主视口，此时场景出现一个对应的对象。如果直接拖入对象管理器，那么发射器会生成在场景原点（0， 0， 0）。
 2. 在编辑器右侧找到对象管理器窗口，对象栏下会出现发射器对象，选中对象在属性面板修改发射器的属性。如果对象管理器窗口或者属性面板窗口不存在，则点击菜单栏中视图选项，勾选显示。
 
-![img](https://arkimg.ark.online/1699844575735-34.webp)
+| 中文示例    | 英文示例                                                         |
+| ----------- | ------------------------------------------------------------ |
+|![img](https://qn-cdn.233leyuan.com/athena/online/f990699f6a2249029e0c08d10cb25ff3_366802836.webp)|![img](https://qn-cdn.233leyuan.com/athena/online/a1165beb441a4dbf8d80d31efce237f0_366802844.webp)|
 
 ## 动态创建
 
@@ -43,25 +51,34 @@
 
 1. 在编辑器下方找到工程目录窗口，如果窗口不存在，则点击菜单栏中视图选项，勾选显示。
 
-![img](https://arkimg.ark.online/1699844575735-35.webp)
+| 中文示例    | 英文示例                                                         |
+| ----------- | ------------------------------------------------------------ |
+|![img](https://qn-cdn.233leyuan.com/athena/online/76f4aa26c0124346b4cf1025e9870859_366802837.webp)|![img](https://qn-cdn.233leyuan.com/athena/online/fbc1e16a6a1743e0a56e6dbfa9edc992_366802845.webp)|
 
-1. 点击新建脚本按钮，脚本目录下会出现一个新的脚本文件：NewScript。
+2. 点击新建脚本按钮，脚本目录下会出现一个新的脚本文件：NewScript。
 
-![img](https://arkimg.ark.online/1699844575735-36.webp)
+| 中文示例    | 英文示例                                                         |
+| ----------- | ------------------------------------------------------------ |
+|![img](https://qn-cdn.233leyuan.com/athena/online/c8cc3b022fce4d69bcbe95ba8aa183ab_366802838.webp)|![img](https://qn-cdn.233leyuan.com/athena/online/f896b392c8ef4dd4b570dbdfa555d702_366802846.webp)|
 
-1. 双击打开脚本文件，将下列示例代码粘贴至脚本中的`onStart`方法：创建一个对象发射器，并在日志窗口打印它的对象ID。
+3. 双击打开脚本文件，将下列示例代码粘贴至脚本中的`onStart`方法：创建一个对象发射器，并在日志窗口打印它的对象ID。
 
 ```TypeScript
 let objectLauncher = GameObject.spawn("ObjectLauncher") as ObjectLauncher;
 console.log("ID " + objectLauncher.gameObjectId);
 ```
 
-1. 鼠标左键点击选中脚本文件，按住拖入场景或者对象管理器。
+4. 鼠标左键点击选中脚本文件，按住拖入场景或者对象管理器。
 
-![img](https://arkimg.ark.online/1699844575735-37.webp)
+| 中文示例    | 英文示例                                                         |
+| ----------- | ------------------------------------------------------------ |
+|![img](https://qn-cdn.233leyuan.com/athena/online/05516e3b618c4ba5bdefa92c778ca317_366802839.webp)|![img](https://qn-cdn.233leyuan.com/athena/online/071dc91099e94ce0b96f1ece0bbabe01_366802840.webp)|
 
-1. 点击运行按钮（F5）后可查看日志窗口打印结果。窗口不存在，则点击菜单栏中视图选项，勾选显示。
-   1. ![img](https://arkimg.ark.online/1699844575735-38.webp)
+5. 点击运行按钮（F5）后可查看日志窗口打印结果。窗口不存在，则点击菜单栏中视图选项，勾选显示。
+
+| 中文示例    | 英文示例                                                         |
+| ----------- | ------------------------------------------------------------ |
+|![img](https://qn-cdn.233leyuan.com/athena/online/d49f0b99b9ae4a47a5ead6f3c29a151f_367112662.webp)|![img](https://qn-cdn.233leyuan.com/athena/online/0c422eeb2e3d42979932e901097c4987_367112663.webp)|
 
 # 对象发射器的工作流
 
