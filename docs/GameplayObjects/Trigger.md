@@ -7,7 +7,9 @@
 
 【触发器】对象在项目中用来检测与其他对象产生的交互行为。你可以自定义【触发器】的属性来控制检测区域的位置，大小和形状。在检测到交互行为后，触发器会触发对应交互行为的事件，通过该事件可以将对象与触发器的交互行为与游戏逻辑关联起来。此外你还可以控制触发器的开关来决定触发器是否进行检测，或者查找某个对象是否处于触发器范围内。你可以在【本地资源库】中的【游戏功能对象】栏中找到【触发器】。
 
-![img](https://arkimg.ark.online/1684035976890-19.webp)
+| 中文示例    | 英文示例                                                         |
+| ----------- | ------------------------------------------------------------ |
+|![img](https://qn-cdn.233leyuan.com/athena/online/266433eda2d74c8f9cac312b0e881ee8_366431896.webp)|![img](https://qn-cdn.233leyuan.com/athena/online/2c2ccbc042044bc29dad20f4c23ebc5e_366431902.webp)|
 
 # 创建触发器
 
@@ -17,15 +19,21 @@
 
 1. 在【本地资源库】的【游戏功能对象】栏中找到【触发器】
 
-![img](https://arkimg.ark.online/1684035976886-1.webp)
+| 中文示例    | 英文示例                                                         |
+| ----------- | ------------------------------------------------------------ |
+|![img](https://qn-cdn.233leyuan.com/athena/online/266433eda2d74c8f9cac312b0e881ee8_366431896.webp)|![img](https://qn-cdn.233leyuan.com/athena/online/2c2ccbc042044bc29dad20f4c23ebc5e_366431902.webp)|
 
 2. 将对象拖入到场景中或者【对象管理器】
 
-![img](https://arkimg.ark.online/1684035976886-2.webp)
+| 中文示例    | 英文示例                                                         |
+| ----------- | ------------------------------------------------------------ |
+|![img](https://qn-cdn.233leyuan.com/athena/online/5b203dc0829243fa9ab12238fed6c27b_366431897.webp)|![img](https://qn-cdn.233leyuan.com/athena/online/b8df9f032c154c87bc63254f2a005ffe_366431903.webp)|
 
 3. 在右侧【对象管理器】中【对象】栏找到对应的【触发器】对象并自定义它的属性
 
-![img](https://arkimg.ark.online/1684035976886-3.webp)![img](https://arkimg.ark.online/1684035976886-4.webp)
+| 中文示例    | 英文示例                                                         |
+| ----------- | ------------------------------------------------------------ |
+|![img](https://qn-cdn.233leyuan.com/athena/online/a91fcf747fce44029f4bd28f62c4b923_366431898.webp)|![img](https://qn-cdn.233leyuan.com/athena/online/2858be790893466fb170d07f06a1dade_366431904.webp)|
 
 ## 通过脚本创建：
 
@@ -62,16 +70,19 @@ protected async onStart(): Promise<void> {
 
 在【对象管理器】中【对象】栏找到对应的【触发器】对象，选中后我们可以查看它的属性面板，通过属性面板我们可以修改【触发器】对象的部分属性：位置，旋转，大小和形状。一般来说触发器的检测结果是为了游戏逻辑的修改而服务的，所以通常需要在脚本中去进一步使用。
 
-![img](https://arkimg.ark.online/1684035976887-6.webp)
+| 中文示例    | 英文示例                                                         |
+| ----------- | ------------------------------------------------------------ |
+|![img](https://qn-cdn.233leyuan.com/athena/online/7378fc0d616841ab8156938ca07f22da_366431899.webp)|![img](https://qn-cdn.233leyuan.com/athena/online/7b230cd74d4347cbbfd74280f2a0ae09_366431905.webp)|
 
-
-![img](https://arkimg.ark.online/1684035976887-7.webp)![img](https://arkimg.ark.online/1684035976887-8.webp)
+![img](https://arkimg.ark.online/1684035976887-8.webp)
 
 ## 触发器位置
 
 【触发器】的位置由继承自父类`GameObject`的`worldTransform`中position控制，可读可写。你可以在属性面板中修改场景中【触发器】对象的位置，也可以在代码中动态读写【触发器】对象的属性来控制它的位置。
 
-![img](https://arkimg.ark.online/1684035976887-9.webp)
+| 中文示例    | 英文示例                                                         |
+| ----------- | ------------------------------------------------------------ |
+|![img](https://qn-cdn.233leyuan.com/athena/online/6fc4ab8012e04a44bb61de073c4f04fb_366431900.webp)|![img](https://qn-cdn.233leyuan.com/athena/online/97b36f028b06465ebd50c3bee21b25c7_366431906.webp)|
 
 ```TypeScript
 if(SystemUtil.isServer()) {
@@ -85,7 +96,9 @@ if(SystemUtil.isServer()) {
 
 【触发器】的旋转由继承自父类`GameObject`的`worldTransform`中rotation控制，可读可写。你可以在属性面板中修改场景中【触发器】对象的旋转，也可以在代码中动态读写【触发器】对象的属性来控制它的位置。
 
-![img](https://arkimg.ark.online/1684035976887-10.webp)
+| 中文示例    | 英文示例                                                         |
+| ----------- | ------------------------------------------------------------ |
+|![img](https://qn-cdn.233leyuan.com/athena/online/6fc4ab8012e04a44bb61de073c4f04fb_366431900.webp)|![img](https://qn-cdn.233leyuan.com/athena/online/97b36f028b06465ebd50c3bee21b25c7_366431906.webp)|
 
 ```TypeScript
 if(SystemUtil.isServer()) {
@@ -99,7 +112,9 @@ if(SystemUtil.isServer()) {
 
 【触发器】的大小可以由继承自父类`GameObject`的`worldTransform`中scale控制，可读可写。当【触发器】形状为盒体时，XYZ值分别表示盒体的长宽高。当【触发器】形状为球体时，XY值无效，Z值表示球体半径。此外在代码中，为了突出修改的属性对应的形状，可以使用`setBoxExtent`接口去设置盒体【触发器】的长宽高，或者使用`setSphereRadius`接口去设置球体【触发器】的半径。
 
-![img](https://arkimg.ark.online/1684035976887-11.webp)
+| 中文示例    | 英文示例                                                         |
+| ----------- | ------------------------------------------------------------ |
+|![img](https://qn-cdn.233leyuan.com/athena/online/6fc4ab8012e04a44bb61de073c4f04fb_366431900.webp)|![img](https://qn-cdn.233leyuan.com/athena/online/97b36f028b06465ebd50c3bee21b25c7_366431906.webp)|
 
 ```TypeScript
 // 通过scale属性设置触发器大小
@@ -127,7 +142,9 @@ if(SystemUtil.isServer()) {
 
 【触发器】有两种形状：盒体和球体。【触发器】形状可以在属性面板中进行切换。此外在代码中，你可以使用`shape`接口去修改触发器的形状。你可以使用不同的接口去设置触发器不同形状下的大小：`setBoxExtent`接口去设置盒体【触发器】的长宽高；`setSphereRadius`接口去设置球体【触发器】的半径。
 
-![img](https://arkimg.ark.online/1684035976887-12.webp)
+| 中文示例    | 英文示例                                                         |
+| ----------- | ------------------------------------------------------------ |
+|![img](https://qn-cdn.233leyuan.com/athena/online/f388aa51437546758d0c62611f400164_366431901.webp)|![img](https://qn-cdn.233leyuan.com/athena/online/013af8f3fdcd4944bdeee794e56ac8dd_366431907.webp)|
 
 ```TypeScript
 // 通过接口设置触发器大小
@@ -145,7 +162,9 @@ if(SystemUtil.isServer()) {
 
 ## **触发器的工作流程图：**
 
-![image-20230514115323651](https://arkimg.ark.online/image-20230514115323651.webp)
+| 中文示例    | 英文示例                                                         |
+| ----------- | ------------------------------------------------------------ |
+|![img](https://qn-cdn.233leyuan.com/athena/online/05eb5ab0abe9452cbaf1b8c05f913870_366609406.webp)|![img](https://qn-cdn.233leyuan.com/athena/online/463caf2a9af9440ab7eeaf619e88dae7_366602640.webp)|
 
 ## 获取触发器对象
 
@@ -155,7 +174,9 @@ if(SystemUtil.isServer()) {
 
 1. 选中【触发器】对象后右键点击【复制对象ID】获取它的gameObjectId。此处注意区分【触发器】资源ID和【触发器】对象的ID。
 
-![img](https://arkimg.ark.online/1684035976887-13.webp)
+| 中文示例    | 英文示例                                                         |
+| ----------- | ------------------------------------------------------------ |
+|![img](https://qn-cdn.233leyuan.com/athena/online/1e3d0dfa22b6458892ced9aebb9fede7_366619011.webp)|![img](https://qn-cdn.233leyuan.com/athena/online/6e7a3b828fe24de2ab3f8da17b2805b3_366619012.webp)|
 
 2. 将脚本拖入对象管理器下，用下列代码替换脚本中的`onStart`方法：代码将异步查找ID对应的对象以【触发器】对象进行接收。
 
@@ -173,7 +194,9 @@ protected async onStart(): Promise<void> {
 
 1. 将脚本挂载到【触发器】对象下方
 
-![img](https://arkimg.ark.online/1684035976887-16.webp)
+| 中文示例    | 英文示例                                                         |
+| ----------- | ------------------------------------------------------------ |
+|![img](https://qn-cdn.233leyuan.com/athena/online/fdb7d747ccdb40b3994535aa77fa17a0_366619013.webp)|![img](https://qn-cdn.233leyuan.com/athena/online/e988031694ed44c4914044eae9d3450e_366619014.webp)|
 
 2. 在脚本的onStart方法中添加下列代码：代码获取脚本挂载的对象并以【触发器】对象进行接收
 
@@ -240,4 +263,4 @@ protected async onStart(): Promise<void> {
 
 由于是在服务端触发器添加的事件，所以委托的函数逻辑执行在服务端，我们在【输出窗口】的【服务端】中可以看到打印信息的结果：
 
-![img](https://arkimg.ark.online/1684035976887-18.webp)
+![img](https://qn-cdn.233leyuan.com/athena/online/a78aa3e6e7a7498aadd1bccd4bc34f90_366619015.webp)
