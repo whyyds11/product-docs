@@ -8,7 +8,9 @@
 
 【热武器】是一个发射类武器的功能框架，框架内实现发射、换弹、瞄准、上膛、射击精度、后坐力六个功能模块来模拟发射类武器的工作机制。开发者可以决定是否启用这些功能并自定义功能中相关的各种属性。通过不同的属性配置来模拟不同类型武器的表现。【热武器】在工作流中会触发关键事件方便用户准确把握【热武器】当前的工作状态，同时执行对应的游戏逻辑：例如开火时播放枪口特效，发射子弹，播放音效等等。你可以在【本地资源库】中的【游戏功能对象】栏中找到【热武器】。
 
-![img](https://arkimg.ark.online/1684045718029-20.webp)
+| 中文示例    | 英文示例                                                         |
+| ----------- | ------------------------------------------------------------ |
+|![img](https://qn-cdn.233leyuan.com/athena/online/ffed47c158fb4d19a35e91897659f8a0_367152794.webp)|![img](https://qn-cdn.233leyuan.com/athena/online/514e9f29192e48878235971bdd1132c3_367152807.webp)|
 
 # 创建热武器
 
@@ -18,15 +20,21 @@
 
 1. 在【本地资源库】的【游戏功能对象】栏中找到【热武器】
 
-![img](https://arkimg.ark.online/1684045718023-1.webp)
+| 中文示例    | 英文示例                                                         |
+| ----------- | ------------------------------------------------------------ |
+|![img](https://qn-cdn.233leyuan.com/athena/online/ffed47c158fb4d19a35e91897659f8a0_367152794.webp)|![img](https://qn-cdn.233leyuan.com/athena/online/514e9f29192e48878235971bdd1132c3_367152807.webp)|
 
 2. 将对象拖入到场景中或者【对象管理器】
 
-![img](https://arkimg.ark.online/1684045718023-2.webp)
+| 中文示例    | 英文示例                                                         |
+| ----------- | ------------------------------------------------------------ |
+|![img](https://qn-cdn.233leyuan.com/athena/online/7667f29b4334450eb273795dd8ab4e69_367152795.webp)|![img](https://qn-cdn.233leyuan.com/athena/online/d62727746a364bc8a5b9f8236ccd7c7d_367152808.webp)|
 
 3. 在右侧【对象管理器】中【对象】栏找到对应的【热武器】对象并自定义它的属性
 
-![img](https://arkimg.ark.online/1684045718024-3.webp)![img](https://arkimg.ark.online/1684045718024-4.webp)
+| 中文示例    | 英文示例                                                         |
+| ----------- | ------------------------------------------------------------ |
+|![img](https://qn-cdn.233leyuan.com/athena/online/ae297c42b02e41afa77927c260a7e4bb_367152796.webp)|![img](https://qn-cdn.233leyuan.com/athena/online/c916ff44fa0c4a258859e51d3973cae2_367152809.webp)|
 
 ## 通过脚本创建：
 
@@ -53,13 +61,18 @@ protected async onStart(): Promise<void> {
 
 此外部分属性是动态变化的，只能在代码中读写。`currentBullet`属性用来表示弹夹中剩余弹药数量。
 
-![img](https://arkimg.ark.online/1684045718024-5.webp)
+| 中文示例    | 英文示例                                                         |
+| ----------- | ------------------------------------------------------------ |
+|![img](https://qn-cdn.233leyuan.com/athena/online/f78cdcd7ef5445d2b7891ac1bddd403a_367152797.webp)|![img](https://qn-cdn.233leyuan.com/athena/online/0610e00b206e498aa320df73dc64ba10_367152810.webp)|
 
 - 发射动作绑定：热武器开火时播放的动作（支持资源库拖拽入参）
 - 发射模式：
   - 单发：每次执行开火时，发射1次后自动停火。
   - 连发：每次执行开火时，发射【连发次数】次后停火。
-	![img](https://arkimg.ark.online/1684045718024-6.webp)
+  - 
+| 中文示例    | 英文示例                                                         |
+| ----------- | ------------------------------------------------------------ |
+|![img](https://qn-cdn.233leyuan.com/athena/online/5def0f49e47e47b79048824859b6b8d1_367152798.webp)|![img](https://qn-cdn.233leyuan.com/athena/online/9603f72840d74c1d85f35bdb73e00502_367152811.webp)|
 
   - 全自动：每次执行开火时持续发射，直到手动调用停火或者弹夹子弹为0；
 - 发射间隔：热武器发射两发子弹的最小间隔时间
@@ -67,7 +80,10 @@ protected async onStart(): Promise<void> {
 - 多重射击：每发子弹的分裂数
 - 屏幕中心发射：子弹会在摄像机中心位置生成
   - 发射偏移调整：子弹生成位置偏移
-	![img](https://arkimg.ark.online/1684045718024-7.webp)
+  - 
+| 中文示例    | 英文示例                                                         |
+| ----------- | ------------------------------------------------------------ |
+|![img](https://qn-cdn.233leyuan.com/athena/online/41eb360741b84001b51f43afd04115c0_367152799.webp)|![img](https://qn-cdn.233leyuan.com/athena/online/7207213a08294f839cd2fe7a56491061_367152812.webp)|
 
 ```TypeScript
 // 获取热武器对象
@@ -99,7 +115,9 @@ weapon.fireComponent.multipleShot = 5;
 
 此外部分属性是动态变化的，只能在代码中读写。`dispersionHalfAngleIncreaseSpeed`属性表示范围扩张速度。`dispersionHalfAngleIncreasePerShot`属性表示子弹散布范围半径在每次射击后的扩张值。
 
-![img](https://arkimg.ark.online/1684045718024-8.webp)
+| 中文示例    | 英文示例                                                         |
+| ----------- | ------------------------------------------------------------ |
+|![img](https://qn-cdn.233leyuan.com/athena/online/4ec5679847cb45a3af2d45cfd39a0fed_367152800.webp)|![img](https://qn-cdn.233leyuan.com/athena/online/35f13113dd114fe5b59f0ea2b04b7209_367152813.webp)|
 
 - 散布范围设置：默认散布范围半径，不开火时范围会向默认移动
 - 最大散布范围：最大散布范围半径
