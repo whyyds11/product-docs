@@ -152,7 +152,9 @@ weapon.accuracyOfFireComponent.dispersionHalfAngleIncreaseSpeed = 10;
 
 【瞄准】是热武器工作流中可选的功能，属性面板上可以选择该功能是否启用。功能中定义了与瞄准相关的属性并提供相关接口。【瞄准】功能在【热武器】对象中作为一个功能组件对象存在：`aimComponent`，通过它开发者可以修改瞄准时的摄像机距离，切换瞄准状态。
 
-![img](https://arkimg.ark.online/1684045718025-12.webp)![img](https://arkimg.ark.online/1684045718025-13.webp)
+| 中文示例    | 英文示例                                                         |
+| ----------- | ------------------------------------------------------------ |
+|![img](https://qn-cdn.233leyuan.com/athena/online/f51fee9f9dbd4722a9c59931012af546_367152801.webp)|![img](https://qn-cdn.233leyuan.com/athena/online/942328193c384b5690549a623e3288f2_367152814.webp)|
 
 - 瞄准模式：
   
@@ -181,7 +183,9 @@ weapon.aimComponent.enableAiming(true);
 
 【上膛】是热武器工作流中可选的功能，属性面板上可以选择该功能是否启用。功能中定义了与上膛相关的属性并提供相关接口。【上膛】功能在【热武器】对象中作为一个功能组件对象存在：`loadComponent`，通过它开发者可以对上膛表现进行设置。`animationAssetId`属性用来指定上膛动作；`loadDuration`属性用来设置上膛时间；`loadAfterFireEnabled`属性用来设置是否每次开火都需要上膛（霰弹枪，狙击枪）；
 
-![img](https://arkimg.ark.online/1684045718025-14.webp)
+| 中文示例    | 英文示例                                                         |
+| ----------- | ------------------------------------------------------------ |
+|![img](https://qn-cdn.233leyuan.com/athena/online/a3e2c99d476c4a0c9eb4170d37c1bf57_367152802.webp)|![img](https://qn-cdn.233leyuan.com/athena/online/f53f272950ab4dadb6406c3f6efeebfd_367152815.webp)|
 
 - 上膛动作绑定：热武器上膛时播放绑定的动作（支持资源库拖拽）
 - 上膛时间：上膛动作完成的时间
@@ -209,7 +213,9 @@ weapon.loadComponent.loadAfterFireEnabled = true;
 
 【换弹】是热武器工作流中可选的功能，属性面板上可以选择该功能是否启用。功能中定义了与换弹相关的属性并提供相关接口。【换弹】功能在【热武器】对象中作为一个功能组件对象存在：`reloadComponent`，通过它开发者可以对换弹表现进行设置。`animationAssetId`属性用来指定换弹动作；`reloadDuration`属性用来设置换弹时间；
 
-![img](https://arkimg.ark.online/1684045718025-15.webp)
+| 中文示例    | 英文示例                                                         |
+| ----------- | ------------------------------------------------------------ |
+|![img](https://qn-cdn.233leyuan.com/athena/online/72786157da0d4974a6c9b5b9ec929dbd_367152803.webp)|![img](https://qn-cdn.233leyuan.com/athena/online/cacbb4a57595456dbdf4d6939efaec84_367152816.webp)|
 
 - 换弹动作绑定：热武器换弹时播放绑定的动作（资源库拖拽）
 - 换弹时间：换弹动作完成的时间
@@ -236,7 +242,9 @@ weapon.reloadComponent.reloadDuration = 0.5;
 
 此外部分属性是动态变化的，只能在代码中读写。`dispersionHalfAngleIncreaseSpeed`属性表示范围扩张速度。`dispersionHalfAngleIncreasePerShot`属性表示子弹散布范围半径在每次射击后的扩张值。
 
-![img](https://arkimg.ark.online/1684045718025-16.webp)
+| 中文示例    | 英文示例                                                         |
+| ----------- | ------------------------------------------------------------ |
+|![img](https://qn-cdn.233leyuan.com/athena/online/4593a847015443508838d1d536c70ff2_367152804.webp)|![img](https://qn-cdn.233leyuan.com/athena/online/7445c6a8d0dd4042bbbca7c75fac2dbf_367152817.webp)|
 
 - 水平偏移最小值/最大值：热武器每次发射时，摄像机会基于开火时摄像机位置，进行水平方向的旋转，偏移值从设定的区间内随机。
 - 垂直偏移最小值/最大值：热武器每次发射时，摄像机会基于开火时摄像机位置，进行垂直方向的旋转偏移，偏移值从设定的区间内随机。
@@ -278,7 +286,9 @@ weapon.recoilForceComponent.maxVerticalJitter = 0.8;
 
 1. 选中【热武器】对象后右键点击【复制对象ID】获取它的gameObjectId。此处注意区分【热武器】资源的gameObjectId和【热武器】对象的gameObjectId。
 
-![img](https://arkimg.ark.online/1684045718025-18.webp)
+| 中文示例    | 英文示例                                                         |
+| ----------- | ------------------------------------------------------------ |
+|![img](https://qn-cdn.233leyuan.com/athena/online/c993ffc58203412e8bf9a57d36435ec9_367152805.webp)|![img](https://qn-cdn.233leyuan.com/athena/online/e8df9be38fef41048a66d77b2630ce9c_367152818.webp)|
 
 2. 将脚本拖入对象管理器下，用下列代码替换脚本中的`onStart`方法：代码将异步查找ID对应的对象以【热武器】对象进行接收。
 
@@ -295,7 +305,9 @@ protected async onStart(): Promise<void> {
 
 1. 将脚本挂载到【热武器】对象下方
 
-![img](https://arkimg.ark.online/1684045718025-19.webp)
+| 中文示例    | 英文示例                                                         |
+| ----------- | ------------------------------------------------------------ |
+|![img](https://qn-cdn.233leyuan.com/athena/online/45192b4245dd45718b4cc82dc2a3179b_367152806.webp)|![img](https://qn-cdn.233leyuan.com/athena/online/b79175926de04625b1b503881380ae08_367152819.webp)|
 
 2. 在脚本的`onStart`方法中添加下列代码：代码获取脚本挂载的对象并以【热武器】对象进行接收
 
